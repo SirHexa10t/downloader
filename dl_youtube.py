@@ -3,15 +3,17 @@
 # NOTICE: you need to have yt-dlp installed on your OS (it just works better than the Python lib)
 
 # import yt_dlp
-import os
 
-from misc_tools import print_blue
+from misc.colored_prints import print_blue
+from misc.shell import print_and_capture_sout
 
 # records of file-IDs (youtube-dl skips those and adds new entries as it works)
 DEFAULT_ARCHIVE_LOCATION = "/youtube_archive"  # you could override this, but I recommend just creating such a symlink
 YOUTUBE_DOWNLOAD_ARCHIVE = "youtube_download_archive"
 FILETYPE = "webm"
 OUTPUT_FORMAT = "%(uploader)s[%(channel_id)s]/%(upload_date)s__%(title)s__%(id)s.%(ext)s"
+
+# TODO - timestamps
 
 # TODO - download metadata (video description)
 
@@ -35,6 +37,13 @@ OUTPUT_FORMAT = "%(uploader)s[%(channel_id)s]/%(upload_date)s__%(title)s__%(id)s
 # TODO -   --concurrent-fragments N
 
 
+# TODO - save upload-date into video's name
+
+# TODO - download the thumbnail of the video for the file
+
+
+
+
 def download(dl_link,
              archive_location: str = f"{DEFAULT_ARCHIVE_LOCATION}",
              topic: str = None,  # main tag to nest the download under
@@ -45,7 +54,7 @@ def download(dl_link,
     yt_dlp_opts = ['yt-dlp']
 
     # make sure that there's a records file (if we're using one)
-    yt_dlp_opts.extend(['--download-archive', f"'{archive_location}/{records_file}'"])  # download_archive  opt for python-lib call
+    yt_dlp_opts.extend(['--download-archive', f"{archive_location}/{records_file}"])  # download_archive  opt for python-lib call
 
     # metadata
     yt_dlp_opts.extend(['--write-sub',  # necessary to download uploader's subs when available
@@ -56,23 +65,30 @@ def download(dl_link,
                         ])
 
     # output
-    yt_dlp_opts.extend(['--format', f"'bestvideo[ext={FILETYPE}]+bestaudio[ext={FILETYPE}]/best[ext={FILETYPE}]/best'"])
-    yt_dlp_opts.extend(['--output', f"'{archive_location}/{'' if not topic else topic+'/'}{OUTPUT_FORMAT}'"])  # 'outtmpl' opt for python-lib call
+    yt_dlp_opts.extend(['--format', f"bestvideo[ext={FILETYPE}]+bestaudio[ext={FILETYPE}]/best[ext={FILETYPE}]/best"])
+    yt_dlp_opts.extend(['--output', f"{archive_location}/{'' if not topic else topic+'/'}{OUTPUT_FORMAT}"])  # 'outtmpl' opt for python-lib call
 
     # ad-hoc extra arguments
     # remove function args if they're in the extras dict
     for key in list(locals().keys()):
         extra_args.pop(key, None)
     if extra_args:
-        yt_dlp_opts.extend([item for pair in extra_args.items() for item in pair])
+        for key, value in extra_args.items():
+            yt_dlp_opts.append(key)
+            if value is not True:  # if value is True, it's a flag: don't add any value
+                yt_dlp_opts.append(value)
 
     # youtube links to handle (specified at the end)
     yt_dlp_opts.append(dl_link)
 
     # declare and download
-    command = ' '.join(yt_dlp_opts)
-    print_blue(f"running command: {command}")
-    os.system(command)
+    print_blue(f"running command: {yt_dlp_opts}")
+    return print_and_capture_sout(yt_dlp_opts)
 
+
+def get_expected_paths(**all_sorts_of_args):
+    special_test_ops = {'--get-filename': True}
+    special_test_ops.update(all_sorts_of_args)
+    return download(**special_test_ops)
 
 

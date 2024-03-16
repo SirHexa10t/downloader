@@ -1,9 +1,10 @@
 import unittest
 import dl_youtube
+from misc.decorators import timing_decorator
 
 SHORT_VIDEO_LINK = "https://www.youtube.com/watch?v=MFT4OgFxfes"  # 11s ; "Ice Cream - Oney Cartoons"
 LONG_VIDEO_LINK = "https://www.youtube.com/watch?v=HQYsFshbkYw"  # 20m ; Bisqwit's tutorial "Doom-style 3D engine in C"
-VERY_LONG_VIDEO_LINK = "https://www.youtube.com/watch?v=HQYsFshbkYw"  # 3.5h ; Flowering Night 2009
+VERY_LONG_VIDEO_LINK = "https://www.youtube.com/watch?v=UU6EG1f5lYQ"  # 3.5h ; Flowering Night 2009
 SHARE_LINK = "https://youtu.be/pv21e6iEZUw?si=sl5UGl0DI00f-0_h"  # 2.5m ; "A Cruel Angel’s Thesis, but it's ULTRA EPIC"
 TIMESTAMPED_LINK = "https://youtu.be/IYnsfV5N2n8?si=6xSF90BnXIJcdy04&t=39"  # middle of "asdfmovie"
 PLAYLIST_LINK = "https://www.youtube.com/watch?v=7jrKjkrX3Gw&list=PLvR1Vs9Qj4fk-VnGR2xUtNLvLcwBwGB6V"  # 10 JoJo OPs
@@ -48,6 +49,10 @@ class DownloadCases(unittest.TestCase):
     def test_download_short_video(self):
         dl_youtube.download(dl_link=SHORT_VIDEO_LINK, **test_opts)
 
+    def test_no_download_just_filename(self):
+        result = dl_youtube.get_expected_paths(dl_link=SHORT_VIDEO_LINK, **test_opts)
+        print(f"result is: {result}")
+
     def test_download_korean_title_video(self):
         dl_youtube.download(dl_link=KOREAN_TITLE_LINK, **test_opts)
 
@@ -59,6 +64,29 @@ class DownloadCases(unittest.TestCase):
 
     def test_download_autotranslated_video(self):
         dl_youtube.download(dl_link=AUTOTRANSLATED_SUBBED_LINK, topic='subs_check', **test_opts)
+
+
+
+    def test_download_large_video(self):
+        import os
+
+        @timing_decorator
+        def download_n_threads(n):
+            special_test_ops = {'--concurrent-fragments': n}
+            special_test_ops.update(test_opts)
+            dl_youtube.download(dl_link=VERY_LONG_VIDEO_LINK, topic='concurrency', **special_test_ops)
+
+        records_file = f"{ARCHIVE_LOCATION}/{dl_youtube.YOUTUBE_DOWNLOAD_ARCHIVE}"
+        os.path.exists(records_file) and os.remove(records_file)  # make video-filename retrieval safer
+        video_filename = dl_youtube.get_expected_paths(dl_link=VERY_LONG_VIDEO_LINK, topic='concurrency', **test_opts)
+
+        def clear_test_files():
+            os.path.exists(video_filename) and os.remove(video_filename)
+            os.path.exists(records_file) and os.remove(records_file)
+
+        for i in range(3):
+            clear_test_files()  # FIXME - doesn't delete the archive file properly
+            download_n_threads(f"{i}")
 
     def test_no_duplications(self):
         # TODO - download twice and check that eventually only one instance

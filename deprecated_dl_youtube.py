@@ -6,6 +6,8 @@
 
 import youtube_dl
 
+import misc.file_system
+
 # records of file-IDs (youtube-dl skips those and adds new entries as it works)
 DEFAULT_ARCHIVE_LOCATION = "/youtube_archive"  # you could override this, but I recommend just creating such a symlink
 YOUTUBE_DOWNLOAD_ARCHIVE = "youtube_download_archive"  # FIXME - doesn't get written into
@@ -52,8 +54,8 @@ def download_one(video_to_dl,
 
     # make sure that there's a records file (if we're using one)
     if records_file:
-        import misc_tools
-        misc_tools.create_file_if_not_exists(records_file)
+        from misc import colored_prints
+        misc.file_system.create_file_if_not_exists(records_file)
         # ydl_opts['download-archive'] = records_file
 
     # metadata
