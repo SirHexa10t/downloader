@@ -54,21 +54,16 @@ That's it.
 
 ### Re-running
 
-Click the icon again on the same page. For each photo:
+Click the icon again on the same page. The extension consults Chrome's
+download history: any URL it's already pulled (and the file is still on
+disk) is skipped. New / missing photos get downloaded. That's also how
+interrupted runs recover.
 
-- If you already have a copy with the **same date-prefixed filename** and
-  it's the same size or larger, it's **skipped**.
-- If your copy is smaller (you're upgrading from an older version that
-  grabbed the `m750x740` preview), the original is downloaded and the older
-  smaller file is **deleted** so the album folder stays clean.
-- If your copy is full-size but doesn't have the date prefix (you're
-  upgrading from a version before date-prefixed filenames), it's
-  re-downloaded with the new name and the old file is **deleted**. This
-  one-time bandwidth cost is the price of rename-without-rename-API.
-- If you don't have a copy yet, it's downloaded.
-
-This is also how interrupted downloads recover: rerun and only the missing
-photos come down.
+If you've previously run an older version of this extension and the
+filenames in your album folder are wrong (e.g. they grabbed the smaller
+`m750x740` preview, or are missing the date prefix), **delete the album
+folder before rerunning**. The extension doesn't try to migrate — by
+design — so the simplest cleanup is the manual one.
 
 ---
 
@@ -142,23 +137,17 @@ node --test
      loads when you click "Оригинал". Often >5x bigger than `m750x740`.
    - `?subpanel=main_body` JSON → the sidebar HTML containing the photo's
      posted date in a `day=YYYY-MM-DD` link param.
-4. **HEAD request** confirms the new file's size, then
-   `chrome.downloads.search` looks for any prior download for this photoId
-   in the target folder (regardless of filename — handles cross-version
-   upgrades).
+4. **Skip if already downloaded:** `chrome.downloads.search({url, exists: true})`
+   matches the URL against the user's download history; if the file is
+   still on disk, skip.
 5. **Filename:** `<YYYY-MM-DD>_<original-filename>`. Missing date falls
    back to `0000-00-00_…` so the format stays consistent.
-6. **Decision:** skip if existing matches both the new filename AND has
-   size ≥ new; otherwise download with `conflictAction: "overwrite"`. If
-   the existing file lived under a different name (cross-version upgrade
-   or undated empty-size from a previous build), it's deleted after the
-   new download completes.
-7. Falls back to `pickFullSizeForPhoto` (largest `m{W}x{H}`) if zoom=8
+6. Falls back to `pickFullSizeForPhoto` (largest `m{W}x{H}`) if zoom=8
    doesn't expose an empty-size URL — defensive for unusual entries like
    videos.
 
-Concurrency is capped at 5 parallel fetches. Each entry triggers three
-chch.ru requests (zoom page + main_body + HEAD) plus the download itself.
+Concurrency is capped at 5 parallel fetches. Each entry triggers two
+chch.ru requests (zoom page + main_body) plus the download itself.
 
 ### Why a regex instead of `DOMParser`?
 
