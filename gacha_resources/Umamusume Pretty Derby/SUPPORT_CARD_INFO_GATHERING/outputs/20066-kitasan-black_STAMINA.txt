@@ -1,0 +1,13 @@
+Unique Effect
+    Increases the effectiveness of training performed together (5%)
+    Increases initial Guts when beginning a Career playthrough (20)
+Friendship Bonus: 25
+Mood Bonus: 50
+Stamina Bonus: 1
+Initial Guts Up: 20
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 65

@@ -1,0 +1,10 @@
+Unique Effect
+    Increases Power gain when training together (1)
+    Increases the frequency at which hint events occur (20%)
+Friendship Bonus: 25
+Mood Bonus: 20
+Increased Training: 10
+Starting Bond Up: 20
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Skill Point Bonus: 1

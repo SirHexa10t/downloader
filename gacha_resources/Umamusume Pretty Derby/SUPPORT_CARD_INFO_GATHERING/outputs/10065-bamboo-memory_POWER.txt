@@ -1,0 +1,7 @@
+Friendship Bonus: 15
+Increased Training: 10
+Initial Power Up: 20
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 10
+Skill Point Bonus: 1

@@ -1,0 +1,11 @@
+Unique Effect
+    Increases Speed gain when training together (1)
+    Increases stat gain from races (5%)
+Friendship Bonus: 30
+Mood Bonus: 30
+Power Bonus: 1
+Initial Guts Up: 20
+Starting Bond Up: 20
+Race Bonus: 10
+Fan Count Bonus: 20
+Specialty Rate Up: 35

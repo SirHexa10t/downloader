@@ -1,0 +1,10 @@
+Mood Bonus: 20
+Increased Training: 5
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Event Recovery Amount Up: 30
+Event Effect Up: 15
+Failure Rate Down: 10
+Energy Discount: 10
+Skill Point Bonus: 1

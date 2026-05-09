@@ -1,0 +1,10 @@
+Unique Effect
+    Gain Friendship Bonus (3) every time you do friendship training with this card, up to 5 times for a total of (15)
+Friendship Bonus: 25
+Speed Bonus: 2
+Power Bonus: 1
+Starting Bond Up: 20
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 65
+Skill Point Bonus: 1

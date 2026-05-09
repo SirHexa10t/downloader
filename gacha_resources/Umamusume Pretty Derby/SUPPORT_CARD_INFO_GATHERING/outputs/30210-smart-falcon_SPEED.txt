@@ -1,0 +1,14 @@
+Unique Effect
+    Gain Speed Bonus (1) for every Speed-increasing skill, up to (3) for 3 skills
+Friendship Bonus: 25
+Mood Bonus: 30
+Power Bonus: 2
+Increased Training: 10
+Initial Power Up: 30
+Starting Bond Up: 30
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Specialty Rate Up: 80
+Skill Point Bonus: 1

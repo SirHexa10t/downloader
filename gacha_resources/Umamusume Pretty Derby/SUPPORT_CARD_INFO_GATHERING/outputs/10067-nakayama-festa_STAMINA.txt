@@ -1,0 +1,8 @@
+Friendship Bonus: 15
+Mood Bonus: 25
+Stamina Bonus: 1
+Initial Stamina Up: 25
+Starting Bond Up: 20
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 35

@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Wit Friendship Recovery (5) when the bond gauge is full
+Friendship Bonus: 35
+Speed Bonus: 1
+Wisdom Bonus: 1
+Initial Speed Up: 20
+Initial Wisdom Up: 30
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 10
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 5

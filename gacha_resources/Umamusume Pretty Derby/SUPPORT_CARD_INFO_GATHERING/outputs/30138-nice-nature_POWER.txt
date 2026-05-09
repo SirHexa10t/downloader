@@ -1,0 +1,13 @@
+Unique Effect
+    Gain Power Bonus (3) when the bond gauge is full
+Friendship Bonus: 30
+Mood Bonus: 30
+Stamina Bonus: 1
+Initial Power Up: 20
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 15
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 50
+Skill Point Bonus: 1

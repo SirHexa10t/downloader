@@ -1,0 +1,11 @@
+Unique Effect
+    Gain Training Effectiveness (5) for every support card in the same training facility
+Friendship Bonus: 25
+Guts Bonus: 1
+Initial Guts Up: 30
+Starting Bond Up: 30
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 35

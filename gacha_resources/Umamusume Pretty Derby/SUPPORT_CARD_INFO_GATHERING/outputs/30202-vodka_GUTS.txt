@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Speed Bonus (1) and Power Bonus (1) when the bond gauge is at least 80
+Friendship Bonus: 30
+Mood Bonus: 40
+Power Bonus: 1
+Guts Bonus: 2
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 15
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 65

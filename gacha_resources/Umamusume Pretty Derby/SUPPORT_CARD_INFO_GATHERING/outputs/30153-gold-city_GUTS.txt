@@ -1,0 +1,13 @@
+Unique Effect
+    Gain Guts Bonus (3) when the bond gauge is full
+Friendship Bonus: 30
+Mood Bonus: 30
+Power Bonus: 1
+Increased Training: 5
+Initial Speed Up: 20
+Starting Bond Up: 35
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Specialty Rate Up: 50

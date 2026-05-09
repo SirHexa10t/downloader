@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Training Effectiveness (10) when the bond gauge is at least 80
+Friendship Bonus: 20
+Mood Bonus: 30
+Wisdom Bonus: 2
+Initial Speed Up: 30
+Initial Wisdom Up: 25
+Starting Bond Up: 20
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 5

@@ -1,0 +1,9 @@
+Friendship Bonus: 15
+Mood Bonus: 25
+Speed Bonus: 1
+Initial Speed Up: 20
+Starting Bond Up: 20
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 3

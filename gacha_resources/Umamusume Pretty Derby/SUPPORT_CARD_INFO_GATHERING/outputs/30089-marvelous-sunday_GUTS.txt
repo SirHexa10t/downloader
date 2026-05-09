@@ -1,0 +1,11 @@
+Unique Effect
+    Gain Mood Effect (60) when the bond gauge is full
+Friendship Bonus: 30
+Guts Bonus: 1
+Increased Training: 5
+Initial Speed Up: 30
+Initial Power Up: 20
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Specialty Rate Up: 50

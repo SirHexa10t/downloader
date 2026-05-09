@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Power Bonus (1) for every undefined skill, up to (3) for 3 skills
+Friendship Bonus: 20
+Mood Bonus: 30
+Stamina Bonus: 1
+Increased Training: 10
+Initial Stamina Up: 35
+Starting Bond Up: 20
+Hint Lv. Bonus: 4
+Hint Rate Up: 60
+Specialty Rate Up: 50
+Skill Point Bonus: 2

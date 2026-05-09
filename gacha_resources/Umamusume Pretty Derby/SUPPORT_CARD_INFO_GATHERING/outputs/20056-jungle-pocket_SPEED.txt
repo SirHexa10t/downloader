@@ -1,0 +1,12 @@
+Unique Effect
+    Increases the effectiveness of Friendship Training (10%)
+    Increases skill point gain when training together (1)
+Friendship Bonus: 25
+Mood Bonus: 20
+Power Bonus: 1
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 35

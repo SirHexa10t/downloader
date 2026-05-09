@@ -1,0 +1,12 @@
+Unique Effect
+    The higher the total bond of all your supports is, the higher Training Effectiveness you'll gain
+Friendship Bonus: 30
+Speed Bonus: 1
+Wisdom Bonus: 2
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 5

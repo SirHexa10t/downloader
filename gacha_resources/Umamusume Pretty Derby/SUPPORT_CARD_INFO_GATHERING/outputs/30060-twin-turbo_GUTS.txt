@@ -1,0 +1,10 @@
+Unique Effect
+    Increases Guts gain when training together (1)
+    Increases stat gain from races (5%)
+Friendship Bonus: 25
+Increased Training: 5
+Initial Guts Up: 30
+Starting Bond Up: 25
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 20

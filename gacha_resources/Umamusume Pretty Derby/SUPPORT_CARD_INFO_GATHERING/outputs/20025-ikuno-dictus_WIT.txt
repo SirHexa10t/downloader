@@ -1,0 +1,11 @@
+Unique Effect
+    Increases Wit gain when training together (1)
+    Increases the frequency at which the character participates in their preferred training type (20)
+Friendship Bonus: 25
+Increased Training: 10
+Initial Wisdom Up: 30
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 15
+Specialty Rate Up: 35
+Skill Point Bonus: 1

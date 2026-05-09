@@ -1,0 +1,9 @@
+Mood Bonus: 25
+Stamina Bonus: 1
+Increased Training: 5
+Initial Stamina Up: 20
+Starting Bond Up: 20
+Event Recovery Amount Up: 30
+Event Effect Up: 15
+Failure Rate Down: 10
+Energy Discount: 10

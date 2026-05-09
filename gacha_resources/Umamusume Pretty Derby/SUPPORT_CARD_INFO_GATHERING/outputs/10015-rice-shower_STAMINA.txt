@@ -1,0 +1,7 @@
+Friendship Bonus: 15
+Mood Bonus: 35
+Guts Bonus: 1
+Starting Bond Up: 20
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 35

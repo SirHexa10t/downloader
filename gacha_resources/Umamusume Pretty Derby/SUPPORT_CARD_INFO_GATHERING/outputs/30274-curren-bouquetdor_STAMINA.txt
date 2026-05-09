@@ -1,0 +1,16 @@
+Unique Effect
+    Gain Friendship Bonus (20) when the bond gauge is full
+Friendship Bonus: 20
+Mood Bonus: 30
+Stamina Bonus: 2
+Guts Bonus: 1
+Increased Training: 5
+Initial Stamina Up: 30
+Initial Guts Up: 25
+Starting Bond Up: 30
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 80
+Skill Point Bonus: 1

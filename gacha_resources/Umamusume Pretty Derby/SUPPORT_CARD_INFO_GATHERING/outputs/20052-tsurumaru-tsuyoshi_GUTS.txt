@@ -1,0 +1,10 @@
+Unique Effect
+    Increases Guts gain when training together (1)
+    Increases the effectiveness of training performed together (5%)
+Friendship Bonus: 25
+Speed Bonus: 1
+Increased Training: 5
+Starting Bond Up: 30
+Race Bonus: 10
+Fan Count Bonus: 20
+Specialty Rate Up: 35

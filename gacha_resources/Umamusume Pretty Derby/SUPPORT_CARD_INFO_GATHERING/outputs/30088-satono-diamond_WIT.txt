@@ -1,0 +1,13 @@
+Unique Effect
+    If there are at least 4 different types of support cards in your deck, gain Increased Training (10)
+Friendship Bonus: 25
+Wisdom Bonus: 1
+Initial Wisdom Up: 30
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 20
+Skill Point Bonus: 1
+Wisdom Training Recovery Up: 5

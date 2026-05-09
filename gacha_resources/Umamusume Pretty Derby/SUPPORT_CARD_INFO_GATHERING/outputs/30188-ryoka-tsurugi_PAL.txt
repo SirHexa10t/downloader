@@ -1,0 +1,11 @@
+Unique Effect
+    When the bond gauge is 60 or higher, all support cards in your deck are more likely to appear in training facilities
+Mood Bonus: 50
+Increased Training: 10
+Starting Bond Up: 25
+Race Bonus: 10
+Fan Count Bonus: 20
+Event Recovery Amount Up: 60
+Event Effect Up: 25
+Failure Rate Down: 30
+Energy Discount: 10

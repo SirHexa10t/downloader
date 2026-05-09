@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Training Effectiveness (10) when the bond gauge is at least 80
+Friendship Bonus: 20
+Stamina Bonus: 2
+Initial Stamina Up: 20
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 50
+Skill Point Bonus: 1

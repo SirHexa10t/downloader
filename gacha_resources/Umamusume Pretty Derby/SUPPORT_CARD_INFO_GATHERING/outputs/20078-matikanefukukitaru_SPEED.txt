@@ -1,0 +1,13 @@
+Unique Effect
+    Amplifies the effect of mood when training together (15%)
+    Increases initial Power when beginning a Career playthrough (20)
+Friendship Bonus: 25
+Mood Bonus: 50
+Speed Bonus: 1
+Initial Speed Up: 25
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 15
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 50

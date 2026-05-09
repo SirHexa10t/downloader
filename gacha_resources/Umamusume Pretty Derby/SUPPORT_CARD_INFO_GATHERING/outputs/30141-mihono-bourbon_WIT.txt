@@ -1,0 +1,11 @@
+Unique Effect
+    Gain Initial Stat Up (10), where Stat is the type of the card, for every card in your support deck (Friend and Group types give (2) to every stat)
+Friendship Bonus: 30
+Speed Bonus: 1
+Wisdom Bonus: 2
+Increased Training: 15
+Starting Bond Up: 30
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 65
+Wisdom Training Recovery Up: 5

@@ -1,0 +1,13 @@
+Unique Effect
+    Increases Stamina gain when training together (1)
+    Increases the frequency at which the character participates in their preferred training type (20)
+Friendship Bonus: 25
+Mood Bonus: 30
+Increased Training: 5
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 35
+Skill Point Bonus: 1

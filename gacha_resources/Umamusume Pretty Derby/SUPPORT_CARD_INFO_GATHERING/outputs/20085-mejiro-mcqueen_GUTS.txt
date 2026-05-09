@@ -1,0 +1,11 @@
+Unique Effect
+    Increases Speed gain when training together (1)
+    Increases initial Guts when beginning a Career playthrough (20)
+Friendship Bonus: 20
+Mood Bonus: 50
+Power Bonus: 1
+Increased Training: 10
+Starting Bond Up: 20
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 35

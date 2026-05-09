@@ -1,0 +1,10 @@
+Unique Effect
+    Gain Stamina Bonus (2) when the bond gauge is at least 80
+Friendship Bonus: 20
+Guts Bonus: 1
+Increased Training: 5
+Initial Stamina Up: 30
+Starting Bond Up: 15
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 35

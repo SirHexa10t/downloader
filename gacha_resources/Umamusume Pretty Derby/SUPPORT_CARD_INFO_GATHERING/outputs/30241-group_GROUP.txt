@@ -1,0 +1,11 @@
+Unique Effect
+    Gain Skill Point Bonus (1) and All Stats Bonus (1) when the bond gauge is full
+Friendship Bonus: 30
+Increased Training: 10
+Starting Bond Up: 25
+Race Bonus: 10
+Fan Count Bonus: 20
+Event Recovery Amount Up: 30
+Event Effect Up: 20
+Wisdom Training Recovery Up: 2
+Initial Skill Points Up: 40

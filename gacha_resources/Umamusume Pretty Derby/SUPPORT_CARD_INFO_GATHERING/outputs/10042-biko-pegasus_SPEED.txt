@@ -1,0 +1,7 @@
+Friendship Bonus: 15
+Speed Bonus: 1
+Increased Training: 10
+Initial Speed Up: 25
+Race Bonus: 5
+Fan Count Bonus: 15
+Specialty Rate Up: 35

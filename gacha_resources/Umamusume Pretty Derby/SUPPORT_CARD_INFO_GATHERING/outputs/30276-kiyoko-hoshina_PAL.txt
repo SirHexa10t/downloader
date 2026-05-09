@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Training Effectiveness (5) and Energy Cost Reduction (5) when the bond gauge is at least 60
+Mood Bonus: 60
+Increased Training: 10
+Initial Guts Up: 25
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 15
+Event Effect Up: 80
+Failure Rate Down: 15
+Energy Discount: 25
+Skill Point Bonus: 1

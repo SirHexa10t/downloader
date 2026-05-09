@@ -1,0 +1,10 @@
+Unique Effect
+    Increases Power gain when training together (1)
+    Increases initial Power when beginning a Career playthrough (20)
+Friendship Bonus: 20
+Mood Bonus: 30
+Initial Power Up: 30
+Starting Bond Up: 30
+Hint Lv. Bonus: 1
+Hint Rate Up: 40
+Specialty Rate Up: 20

@@ -1,0 +1,11 @@
+Unique Effect
+    Increases skill point gain when training together (1)
+Friendship Bonus: 20
+Mood Bonus: 30
+Increased Training: 10
+Initial Power Up: 20
+Starting Bond Up: 30
+Race Bonus: 10
+Fan Count Bonus: 20
+Hint Rate Up: 60
+Skill Point Bonus: 1

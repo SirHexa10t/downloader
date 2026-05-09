@@ -1,0 +1,12 @@
+Unique Effect
+    Increases the effectiveness of training performed together (5%)
+    Increases initial Wit when beginning a Career playthrough (20)
+Friendship Bonus: 25
+Wisdom Bonus: 1
+Increased Training: 5
+Initial Speed Up: 25
+Starting Bond Up: 10
+Race Bonus: 10
+Fan Count Bonus: 20
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 4

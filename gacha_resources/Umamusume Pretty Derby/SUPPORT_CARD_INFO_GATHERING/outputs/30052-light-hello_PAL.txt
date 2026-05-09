@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Energy Cost Reduction (30) when participating in a friendship (rainbow) training
+Increased Training: 10
+Initial Speed Up: 30
+Initial Guts Up: 30
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 10
+Event Recovery Amount Up: 60
+Event Effect Up: 35
+Failure Rate Down: 30
+Energy Discount: 10

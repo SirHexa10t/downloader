@@ -1,0 +1,7 @@
+Mood Bonus: 35
+Increased Training: 5
+Initial Guts Up: 20
+Starting Bond Up: 20
+Event Effect Up: 25
+Failure Rate Down: 10
+Energy Discount: 15

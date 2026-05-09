@@ -1,0 +1,13 @@
+Unique Effect
+    Increases Stamina gain when training together (1)
+    Increases initial Stamina when beginning a Career playthrough (20)
+Friendship Bonus: 25
+Mood Bonus: 20
+Guts Bonus: 1
+Increased Training: 10
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 15
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 50

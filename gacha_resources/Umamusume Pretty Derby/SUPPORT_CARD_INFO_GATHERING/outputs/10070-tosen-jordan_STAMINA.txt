@@ -1,0 +1,6 @@
+Friendship Bonus: 20
+Mood Bonus: 25
+Stamina Bonus: 1
+Initial Stamina Up: 20
+Starting Bond Up: 25
+Specialty Rate Up: 50

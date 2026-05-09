@@ -1,0 +1,10 @@
+{
+  "name": "chch-downloader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome MV3 extension that downloads all full-size photos from a chch.ru / gallery.ru album in one click.",
+  "scripts": {
+    "test": "node --test test/"
+  }
+}

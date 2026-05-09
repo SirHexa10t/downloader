@@ -1,0 +1,9 @@
+Friendship Bonus: 20
+Increased Training: 5
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 50
+Wisdom Training Recovery Up: 3

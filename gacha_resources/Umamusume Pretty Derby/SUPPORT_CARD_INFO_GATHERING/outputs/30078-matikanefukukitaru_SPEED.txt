@@ -1,0 +1,15 @@
+Unique Effect
+    Amplifies the effect of mood when training together (15%)
+    Decreases the probability of failure when training together (10%)
+Friendship Bonus: 20
+Mood Bonus: 30
+Increased Training: 10
+Initial Speed Up: 30
+Initial Stamina Up: 30
+Initial Power Up: 30
+Initial Guts Up: 30
+Initial Wisdom Up: 30
+Starting Bond Up: 20
+Race Bonus: 10
+Fan Count Bonus: 15
+Energy Discount: 10

@@ -1,0 +1,11 @@
+Unique Effect
+    Amplifies the effect of mood when training together (15%)
+    Increases the frequency at which the character participates in their preferred training type (20)
+Friendship Bonus: 25
+Mood Bonus: 30
+Guts Bonus: 1
+Increased Training: 5
+Starting Bond Up: 25
+Hint Lv. Bonus: 4
+Hint Rate Up: 60
+Specialty Rate Up: 20

@@ -1,0 +1,8 @@
+Friendship Bonus: 20
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 35
+Skill Point Bonus: 1

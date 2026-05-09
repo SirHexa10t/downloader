@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "chch.ru gallery downloader",
+  "version": "1.0.0",
+  "description": "Download all full-size photos from a chch.ru / gallery.ru album in one click.",
+  "permissions": ["downloads", "scripting", "activeTab", "declarativeContent", "notifications"],
+  "host_permissions": ["*://*.chch.ru/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Download all photos in this album",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

@@ -1,0 +1,12 @@
+Unique Effect
+    Increases Power gain when training together (1)
+    Increases initial Power when beginning a Career playthrough (20)
+Friendship Bonus: 25
+Increased Training: 15
+Initial Power Up: 25
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Skill Point Bonus: 1

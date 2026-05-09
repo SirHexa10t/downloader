@@ -1,0 +1,6 @@
+Increased Training: 5
+Starting Bond Up: 25
+Event Recovery Amount Up: 40
+Event Effect Up: 25
+Failure Rate Down: 20
+Energy Discount: 15

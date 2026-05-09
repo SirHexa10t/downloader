@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Guts Bonus (2) when the bond gauge is at least 80
+Friendship Bonus: 25
+Mood Bonus: 50
+Initial Power Up: 30
+Initial Guts Up: 30
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 15
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 50

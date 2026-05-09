@@ -1,0 +1,13 @@
+Unique Effect
+    Gain Mood Effect (60) when participating in a friendship (rainbow) training
+Friendship Bonus: 20
+Wisdom Bonus: 1
+Increased Training: 15
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Specialty Rate Up: 65
+Skill Point Bonus: 1
+Wisdom Training Recovery Up: 5

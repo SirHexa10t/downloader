@@ -1,0 +1,12 @@
+Unique Effect
+    Increases Power gain when training together (1)
+    Increases initial Friendship Gauge when beginning a Career playthrough (15)
+Friendship Bonus: 25
+Mood Bonus: 50
+Speed Bonus: 1
+Increased Training: 5
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 80

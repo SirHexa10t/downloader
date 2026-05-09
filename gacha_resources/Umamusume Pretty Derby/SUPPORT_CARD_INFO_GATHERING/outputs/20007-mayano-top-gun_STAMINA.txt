@@ -1,0 +1,11 @@
+Unique Effect
+    Increases the effectiveness of Friendship Training (10%)
+    Increases the frequency at which the character participates in their preferred training type (20)
+Friendship Bonus: 25
+Mood Bonus: 20
+Increased Training: 10
+Initial Stamina Up: 30
+Race Bonus: 5
+Fan Count Bonus: 15
+Specialty Rate Up: 35
+Skill Point Bonus: 1

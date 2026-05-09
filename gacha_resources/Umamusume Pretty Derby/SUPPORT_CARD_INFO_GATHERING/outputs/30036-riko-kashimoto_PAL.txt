@@ -1,0 +1,12 @@
+Unique Effect
+    Decreases the probability of failure when training together (10%)
+    Decreases Energy consumed when training together (5%)
+Increased Training: 10
+Initial Stamina Up: 30
+Starting Bond Up: 30
+Race Bonus: 10
+Fan Count Bonus: 20
+Event Recovery Amount Up: 30
+Event Effect Up: 35
+Failure Rate Down: 20
+Energy Discount: 15

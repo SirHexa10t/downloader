@@ -1,0 +1,10 @@
+Unique Effect
+    Decreases the probability of failure when training together (10%)
+    Decreases Energy consumed when training together (5%)
+Increased Training: 10
+Initial Speed Up: 30
+Starting Bond Up: 30
+Event Recovery Amount Up: 60
+Event Effect Up: 35
+Failure Rate Down: 30
+Energy Discount: 25

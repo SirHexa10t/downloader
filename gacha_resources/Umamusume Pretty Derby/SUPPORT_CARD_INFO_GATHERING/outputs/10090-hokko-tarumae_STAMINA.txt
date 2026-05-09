@@ -1,0 +1,9 @@
+Friendship Bonus: 15
+Mood Bonus: 35
+Increased Training: 5
+Initial Stamina Up: 25
+Initial Guts Up: 20
+Starting Bond Up: 20
+Fan Count Bonus: 15
+Hint Lv. Bonus: 2
+Hint Rate Up: 30

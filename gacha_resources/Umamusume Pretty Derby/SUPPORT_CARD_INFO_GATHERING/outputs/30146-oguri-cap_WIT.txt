@@ -1,0 +1,13 @@
+Unique Effect
+    All support cards gain Initial Friendship Gauge (5)
+Friendship Bonus: 35
+Speed Bonus: 1
+Wisdom Bonus: 2
+Increased Training: 10
+Starting Bond Up: 15
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 50
+Wisdom Training Recovery Up: 5

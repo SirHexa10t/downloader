@@ -1,0 +1,13 @@
+Unique Effect
+    Increases Wit gain when training together (1)
+    Increases stat gain from races (5%)
+Friendship Bonus: 25
+Wisdom Bonus: 1
+Increased Training: 15
+Starting Bond Up: 20
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 5

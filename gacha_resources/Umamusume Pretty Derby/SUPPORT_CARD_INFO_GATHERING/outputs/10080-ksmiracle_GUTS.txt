@@ -1,0 +1,5 @@
+Friendship Bonus: 20
+Guts Bonus: 1
+Initial Guts Up: 25
+Starting Bond Up: 20
+Specialty Rate Up: 50

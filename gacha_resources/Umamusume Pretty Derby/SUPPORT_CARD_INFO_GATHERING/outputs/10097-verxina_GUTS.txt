@@ -1,0 +1,8 @@
+Friendship Bonus: 15
+Mood Bonus: 25
+Speed Bonus: 1
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 50

@@ -1,0 +1,12 @@
+Unique Effect
+    Amplifies the effect of mood when training together (15%)
+    Increases the frequency at which hint events occur (20%)
+Friendship Bonus: 20
+Mood Bonus: 40
+Wisdom Bonus: 1
+Increased Training: 5
+Starting Bond Up: 20
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 35
+Wisdom Training Recovery Up: 4

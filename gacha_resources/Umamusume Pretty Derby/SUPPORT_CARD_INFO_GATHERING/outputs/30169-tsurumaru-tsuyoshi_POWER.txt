@@ -1,0 +1,11 @@
+Unique Effect
+    The more energy you have, the more Training Effectiveness you'll gain
+Friendship Bonus: 20
+Mood Bonus: 30
+Power Bonus: 2
+Initial Power Up: 25
+Starting Bond Up: 30
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 50
+Skill Point Bonus: 1

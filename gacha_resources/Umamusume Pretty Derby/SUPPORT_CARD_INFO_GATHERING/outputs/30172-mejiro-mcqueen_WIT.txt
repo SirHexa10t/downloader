@@ -1,0 +1,15 @@
+Unique Effect
+    Gain Wit Bonus (2) when the bond gauge is at least 80
+Friendship Bonus: 30
+Mood Bonus: 60
+Speed Bonus: 1
+Wisdom Bonus: 1
+Increased Training: 5
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Specialty Rate Up: 80
+Skill Point Bonus: 1
+Wisdom Training Recovery Up: 5

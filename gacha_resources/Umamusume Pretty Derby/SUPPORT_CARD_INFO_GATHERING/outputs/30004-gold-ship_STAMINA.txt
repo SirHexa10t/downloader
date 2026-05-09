@@ -1,0 +1,11 @@
+Unique Effect
+    Increases the effectiveness of training performed together (5%)
+    Increases initial Friendship Gauge when beginning a Career playthrough (15)
+Friendship Bonus: 20
+Mood Bonus: 30
+Stamina Bonus: 1
+Increased Training: 5
+Initial Stamina Up: 30
+Starting Bond Up: 25
+Hint Lv. Bonus: 4
+Hint Rate Up: 60

@@ -1,0 +1,4 @@
+Mood Bonus: 35
+Starting Bond Up: 20
+Event Effect Up: 25
+Skill Point Bonus: 1

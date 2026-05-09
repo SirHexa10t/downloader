@@ -1,0 +1,17 @@
+In this file, there's the copied data from gametora.com for races in Umamusume Pretty Derby. Please help me sort it with a Python script. Every entry is in this multiple-row format:
+<name>
+<Year>
+<date within year>
+<terrain>
+<right/left (indicated by ⇐ or ⇒ > <racetrack>
+<race-type>
+<distance>
+
+Sometimes, any of the last 4 lines could be written as "Varies".
+Please provide a Python parser that saves those entries into a dictionary in this form:
+{
+    "Senior Dec Late": { "grade": "?", "name": "Arima Kinen", "racetrack": "Nakayama", "direction": "right", "terrain": "turf", "distance": 2500, "season": "?", "daytime": "?", "fans": "?" },
+}
+
+The fields that can't be derived from the file I provided are marked as "?" in this example.
+

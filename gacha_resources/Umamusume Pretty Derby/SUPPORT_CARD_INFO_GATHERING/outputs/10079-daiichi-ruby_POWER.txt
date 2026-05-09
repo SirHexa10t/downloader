@@ -1,0 +1,6 @@
+Friendship Bonus: 20
+Increased Training: 5
+Initial Power Up: 25
+Starting Bond Up: 25
+Specialty Rate Up: 50
+Skill Point Bonus: 1

@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Stamina Bonus (1) for every Recovery skill, up to (3) for 3 skills
+Friendship Bonus: 30
+Mood Bonus: 30
+Increased Training: 5
+Starting Bond Up: 30
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 3
+Hint Rate Up: 40
+Specialty Rate Up: 50
+Skill Point Bonus: 1

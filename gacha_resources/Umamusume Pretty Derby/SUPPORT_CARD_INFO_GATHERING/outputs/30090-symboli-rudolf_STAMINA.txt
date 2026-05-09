@@ -1,0 +1,11 @@
+Unique Effect
+    Gain Initial Stat Up (10), where Stat is the type of the card, for every card in your support deck (Friend and Group types give (2) to every stat)
+Friendship Bonus: 25
+Guts Bonus: 1
+Increased Training: 10
+Starting Bond Up: 20
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 35

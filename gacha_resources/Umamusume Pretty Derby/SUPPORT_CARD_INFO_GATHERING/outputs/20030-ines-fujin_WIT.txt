@@ -1,0 +1,12 @@
+Unique Effect
+    Amplifies the effect of mood when training together (15%)
+    Increases stat gain from races (5%)
+Friendship Bonus: 25
+Mood Bonus: 20
+Wisdom Bonus: 1
+Initial Wisdom Up: 15
+Starting Bond Up: 15
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
+Specialty Rate Up: 65
+Wisdom Training Recovery Up: 4

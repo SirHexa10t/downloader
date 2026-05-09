@@ -1,0 +1,12 @@
+Unique Effect
+    Gain Friendship Bonus (10) and Mood Effect (15) when the bond gauge is at least 80
+Friendship Bonus: 25
+Mood Bonus: 20
+Power Bonus: 1
+Increased Training: 15
+Starting Bond Up: 35
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 120

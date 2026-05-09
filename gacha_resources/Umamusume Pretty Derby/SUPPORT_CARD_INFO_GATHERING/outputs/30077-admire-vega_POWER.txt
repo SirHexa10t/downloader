@@ -1,0 +1,12 @@
+Unique Effect
+    Increases the effectiveness of training performed together (5%)
+    Increases the frequency at which hint events occur (20%)
+Friendship Bonus: 30
+Power Bonus: 1
+Increased Training: 15
+Starting Bond Up: 20
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 35

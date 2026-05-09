@@ -1,0 +1,12 @@
+Unique Effect
+    Amplifies the effect of mood when training together (15%)
+    Increases initial Friendship Gauge when beginning a Career playthrough (15)
+Friendship Bonus: 20
+Mood Bonus: 30
+Increased Training: 5
+Initial Wisdom Up: 30
+Starting Bond Up: 25
+Hint Lv. Bonus: 4
+Hint Rate Up: 60
+Skill Point Bonus: 1
+Wisdom Training Recovery Up: 5

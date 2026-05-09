@@ -1,0 +1,13 @@
+Unique Effect
+    Increases the effectiveness of training performed together (5%)
+    Increases the frequency at which the character participates in their preferred training type (20)
+Friendship Bonus: 35
+Mood Bonus: 30
+Increased Training: 5
+Starting Bond Up: 25
+Race Bonus: 10
+Fan Count Bonus: 15
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 35
+Skill Point Bonus: 1

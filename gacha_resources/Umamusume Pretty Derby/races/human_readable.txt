@@ -1,0 +1,385 @@
+Date                     Grade   Name                            Racetrack  Direction  Terrain  Distance  Race-type  Season  Day       Fans  Slopes
+Junior June Late         Maiden  Junior Make Debut               ?          ?          ?               ?  ?          Spring  Day          ?  ?
+Junior July Late         G3      Hakodate Junior Stakes          Hakodate   right      Turf         1200  Sprint     Summer  Day          ?  -
+Junior July Late         OP      Chukyo Junior Stakes            Chukyo     left       Turf         1600  Mile       Summer  Day       1600  down, up
+Junior August Early      OP      Cosmos Sho                      Sapporo    right      Turf         1800  Mile       Summer  Day       1600  -
+Junior August Early      OP      Dahlia Sho                      Niigata    left       Turf         1400  Sprint     Summer  Day       1600  -
+Junior August Early      OP      Phoenix Sho                     Kokura     right      Turf         1200  Sprint     Summer  Day       1600  down
+Junior August Late       G3      Niigata Junior Stakes           Niigata    left       Turf         1600  Mile       Summer  Day       3100  up, down
+Junior August Late       OP      Clover Sho                      Sapporo    right      Turf         1500  Mile       Summer  Day       1600  -
+Junior September Early   G3      Kokura Junior Stakes            Kokura     right      Turf         1200  Sprint     Fall    Day       3100  down
+Junior September Early   G3      Sapporo Junior Stakes           Sapporo    right      Turf         1800  Mile       Fall    Day       3100  -
+Junior September Early   OP      Suzuran Sho                     Sapporo    right      Turf         1200  Sprint     Fall    Day       1600  -
+Junior September Early   OP      Nojigiku Stakes                 Hanshin    right      Turf         1800  Mile       Fall    Day       1600  down, up
+Junior September Early   Pre-OP  Aster Sho                       Nakayama   right      Turf         1600  Mile       Fall    Day       1000  down, up
+Junior September Late    OP      Fuyo Stakes                     Nakayama   right      Turf         2000  Medium     Fall    Day       1600  up, up, down, up
+Junior September Late    OP      Canna Stakes                    Nakayama   right      Turf         1200  Sprint     Fall    Day       1600  down, up
+Junior September Late    OP      Kikyo Stakes                    Hanshin    right      Turf         1400  Sprint     Fall    Day       1600  down, up
+Junior September Late    Pre-OP  Saffron Sho                     Nakayama   right      Turf         1600  Mile       Fall    Day       1000  down, up
+Junior October Early     G3      Saudi Arabia Royal Cup          Tokyo      left       Turf         1600  Mile       Fall    Day       3300  up, down, up
+Junior October Early     OP      Momiji Stakes                   Kyoto      right      Turf         1400  Sprint     Fall    Day       1600  up, up, down
+Junior October Early     Pre-OP  Rindo Sho                       Kyoto      right      Turf         1400  Sprint     Fall    Day       1000  up, up, down
+Junior October Early     Pre-OP  Shigiku Sho                     Kyoto      right      Turf         2000  Medium     Fall    Day       1000  up, down
+Junior October Early     Pre-OP  Platanus Sho                    Tokyo      left       Dirt         1600  Mile       Fall    Day       1000  down, up
+Junior October Late      G3      Artemis Stakes                  Tokyo      left       Turf         1600  Mile       Fall    Day       2900  up, down, up
+Junior October Late      OP      Ivy Stakes                      Tokyo      left       Turf         1800  Mile       Fall    Day       1700  up, down, up
+Junior October Late      OP      Hagi Stakes                     Kyoto      right      Turf         1800  Mile       Fall    Day       1700  up, up, down
+Junior October Late      Pre-OP  Nadeshiko Sho                   Kyoto      right      Dirt         1400  Sprint     Fall    Day       1000  up, down
+Junior November Early    G2      Keio Hai Junior Stakes          Tokyo      left       Turf         1400  Sprint     Fall    Day       3800  up, down, up
+Junior November Early    G2      Daily Hai Junior Stakes         Kyoto      right      Turf         1600  Mile       Fall    Day       3800  up, up, down
+Junior November Early    G3      Fantasy Stakes                  Kyoto      right      Turf         1400  Sprint     Fall    Day       2900  up, up, down
+Junior November Early    OP      Fukushima Junior Stakes         Fukushima  right      Turf         1200  Sprint     Fall    Day       1600  up
+Junior November Early    Pre-OP  Kigiku Sho                      Kyoto      right      Turf         2000  Medium     Fall    Day       1000  up, down
+Junior November Early    Pre-OP  Oxalis Sho                      Tokyo      left       Dirt         1400  Sprint     Fall    Day       1000  down, up
+Junior November Early    Pre-OP  Kimmokusei Tokubetsu            Fukushima  right      Turf         1800  Mile       Fall    Day       1000  up
+Junior November Early    Pre-OP  Hyakunichiso Tokubetsu          Tokyo      left       Turf         2000  Medium     Fall    Day       1000  up, down, up
+Junior November Late     G3      Kyoto Junior Stakes             Kyoto      right      Turf         2000  Medium     Fall    Day       3300  up, down
+Junior November Late     G3      Tokyo Sports Hai Junior Stakes  Tokyo      left       Turf         1800  Mile       Fall    Day       3300  up, down, up
+Junior November Late     Pre-OP  Begonia Sho                     Tokyo      left       Turf         1600  Mile       Fall    Day       1000  up, down, up
+Junior November Late     Pre-OP  Habotan Sho                     Nakayama   right      Turf         2000  Medium     Fall    Day       1000  up, up, down, up
+Junior November Late     Pre-OP  Akamatsu Sho                    Tokyo      left       Turf         1600  Mile       Fall    Day       1000  up, down, up
+Junior November Late     Pre-OP  Cattleya Sho                    Tokyo      left       Dirt         1600  Mile       Fall    Day       1000  down, up
+Junior November Late     Pre-OP  Koyamaki Sho                    Chukyo     left       Turf         1600  Mile       Fall    Day       1000  down, up
+Junior November Late     Pre-OP  Mochinoki Sho                   Kyoto      right      Dirt         1800  Mile       Fall    Day       1000  up, down
+Junior November Late     Pre-OP  Shiragiku Sho                   Kyoto      right      Turf         1600  Mile       Fall    Day       1000  up, up, down
+Junior November Late     Pre-OP  Shumeigiku Sho                  Kyoto      right      Turf         1400  Sprint     Fall    Day       1000  up, up, down
+Junior December Early    G1      Hanshin Juvenile Fillies        Hanshin    right      Turf         1600  Mile       Winter  Day       6500  down, up
+Junior December Early    G1      Asahi Hai Futurity Stakes       Hanshin    right      Turf         1600  Mile       Winter  Day       7000  down, up
+Junior December Early    Pre-OP  Erica Sho                       Hanshin    right      Turf         2000  Medium     Winter  Day       1000  down, up, up, down, down, up, up
+Junior December Early    Pre-OP  Manryo Sho                      Hanshin    right      Turf         1400  Sprint     Winter  Day       1000  down, up
+Junior December Early    Pre-OP  Hiiragi Sho                     Nakayama   right      Turf         1600  Mile       Winter  Day       1000  down, up
+Junior December Early    Pre-OP  Sazanka Sho                     Hanshin    right      Turf         1200  Sprint     Winter  Day       1000  down, up
+Junior December Early    Pre-OP  Kuromatsu Sho                   Nakayama   right      Turf         1200  Sprint     Winter  Day       1000  down, up
+Junior December Early    Pre-OP  Tsuwabuki Sho                   Chukyo     left       Turf         1400  Sprint     Winter  Day       1000  down, up
+Junior December Early    Pre-OP  Kantsubaki Sho                  Chukyo     left       Dirt         1400  Sprint     Winter  Day       1000  down, up
+Junior December Late     G1      Hopeful Stakes                  Nakayama   right      Turf         2000  Medium     Winter  Day       7000  up, up, down, up
+Junior December Late     OP      Christmas Rose Stakes           Nakayama   right      Turf         1200  Sprint     Winter  Day       1600  down, up
+Junior December Late     Pre-OP  Senryo Sho                      Hanshin    right      Turf         1600  Mile       Winter  Day       1000  down, up
+Classic January Early    G3      Keisei Hai                      Nakayama   right      Turf         2000  Medium     Winter  Day       3800  up, up, down, up
+Classic January Early    G3      Fairy Stakes                    Nakayama   right      Turf         1600  Mile       Winter  Day       3500  down, up
+Classic January Early    G3      Shinzan Kinen                   Kyoto      right      Turf         1600  Mile       Winter  Day       3800  up, up, down
+Classic January Early    OP      Junior Cup                      Nakayama   right      Turf         1600  Mile       Winter  Day       2000  down, up
+Classic January Early    OP      Kobai Stakes                    Kyoto      right      Turf         1400  Sprint     Winter  Day       2000  up, up, down
+Classic January Late     OP      Crocus Stakes                   Tokyo      left       Turf         1400  Sprint     Winter  Day       2000  up, down, up
+Classic January Late     OP      Wakagoma Stakes                 Kyoto      right      Turf         2000  Medium     Winter  Day       2000  up, down
+Classic February Early   G3      Queen Cup                       Tokyo      left       Turf         1600  Mile       Winter  Day       3500  up, down, up
+Classic February Early   G3      Kisaragi Sho                    Kyoto      right      Turf         1800  Mile       Winter  Day       3800  up, up, down
+Classic February Early   G3      Kyodo News Hai                  Tokyo      left       Turf         1800  Mile       Winter  Day       3800  up, down, up
+Classic February Early   OP      Elfin Stakes                    Kyoto      right      Turf         1600  Mile       Winter  Day       2000  up, up, down
+Classic February Late    OP      Sumire Stakes                   Hanshin    right      Turf         2200  Medium     Winter  Day       2000  down, up, down, up
+Classic February Late    OP      Hyacinth Stakes                 Tokyo      left       Dirt         1600  Mile       Winter  Day       1900  down, up
+Classic February Late    OP      Marguerite Stakes               Hanshin    right      Turf         1200  Sprint     Winter  Day       2000  down, up
+Classic March Early      G2      Tulip Sho                       Hanshin    right      Turf         1600  Mile       Spring  Day       5200  down, up
+Classic March Early      G2      Yayoi Sho                       Nakayama   right      Turf         2000  Medium     Spring  Day       5400  up, up, down, up
+Classic March Early      G2      Fillies' Revue                  Hanshin    right      Turf         1400  Sprint     Spring  Day       5200  down, up
+Classic March Early      OP      Shoryu Stakes                   Chukyo     left       Dirt         1400  Sprint     Spring  Day       1800  down, up
+Classic March Early      OP      Anemone Stakes                  Nakayama   right      Turf         1600  Mile       Spring  Day       2000  down, up
+Classic March Late       G2      Spring Stakes                   Nakayama   right      Turf         1800  Mile       Spring  Day       5400  up, up, down, up, up
+Classic March Late       G3      Flower Cup                      Nakayama   right      Turf         1800  Mile       Spring  Day       3500  up, up, down, up, up
+Classic March Late       G3      Mainichi Hai                    Hanshin    right      Turf         1800  Mile       Spring  Day       3800  down, up
+Classic March Late       G3      Falcon Stakes                   Chukyo     left       Turf         1400  Sprint     Spring  Day       3800  down, up
+Classic March Late       OP      Wakaba Stakes                   Hanshin    right      Turf         2000  Medium     Spring  Day       2000  down, up, up, down, down, up, up
+Classic April Early      G1      Oka Sho                         Hanshin    right      Turf         1600  Mile       Spring  Day      10500  down, up
+Classic April Early      G1      Satsuki Sho                     Nakayama   right      Turf         2000  Medium     Spring  Day      11000  up, up, down, up
+Classic April Early      G2      New Zealand Trophy              Nakayama   right      Turf         1600  Mile       Spring  Day       5400  down, up
+Classic April Early      G3      Arlington Cup                   Hanshin    right      Turf         1600  Mile       Spring  Day       3800  down, up
+Classic April Early      OP      Fukuryu Stakes                  Nakayama   right      Dirt         1800  Mile       Spring  Day       1800  up, up, down, up
+Classic April Early      OP      Wasurenagusa Sho                Hanshin    right      Turf         2000  Medium     Spring  Day       2000  down, up, up, down, down, up, up
+Classic April Late       G2      Aoba Sho                        Tokyo      left       Turf         2400  Medium     Spring  Day       5400  up, up, down, up, up
+Classic April Late       G2      Flora Stakes                    Tokyo      left       Turf         2000  Medium     Spring  Day       5200  up, down, up
+Classic April Late       OP      Tango Stakes                    Kyoto      right      Dirt         1400  Sprint     Spring  Day       1800  up, down
+Classic April Late       OP      Sweetpea Stakes                 Tokyo      left       Turf         1800  Mile       Spring  Day       2000  up, down, up
+Classic April Late       OP      Tachibana Stakes                Kyoto      right      Turf         1400  Sprint     Spring  Day       2000  up, up, down
+Classic May Early        G1      NHK Mile Cup                    Tokyo      left       Turf         1600  Mile       Spring  Day      10500  up, down, up
+Classic May Early        G2      Kyoto Shimbun Hai               Kyoto      right      Turf         2200  Medium     Spring  Day       5400  up, up, down
+Classic May Early        OP      Seiryu Stakes                   Tokyo      left       Dirt         1600  Mile       Spring  Day       1800  down, up
+Classic May Early        OP      Principal Stakes                Tokyo      left       Turf         2000  Medium     Spring  Day       2000  up, down, up
+Classic May Late         G1      Japanese Oaks                   Tokyo      left       Turf         2400  Medium     Spring  Day      11000  up, up, down, up, up
+Classic May Late         G1      Tokyo Yushun (Japanese Derby)   Tokyo      left       Turf         2400  Medium     Spring  Day      20000  up, up, down, up, up
+Classic May Late         G3      Aoi Stakes                      Kyoto      right      Turf         1200  Sprint     Spring  Day       3800  up, down
+Classic May Late         OP      Hosu Stakes                     Kyoto      right      Dirt         1800  Mile       Spring  Day       1900  up, down
+Classic May Late         OP      Shirayuri Stakes                Kyoto      right      Turf         1800  Mile       Spring  Day       2000  up, up, down
+Classic June Early       G1      Yasuda Kinen                    Tokyo      left       Turf         1600  Mile       Spring  Day      13000  up, down, up
+Classic June Early       G3      Epsom Cup                       Tokyo      left       Turf         1800  Mile       Spring  Day       4100  up, down, up
+Classic June Early       G3      Naruo Kinen                     Hanshin    right      Turf         2000  Medium     Spring  Day       4100  down, up, up, down, down, up, up
+Classic June Early       G3      Mermaid Stakes                  Hanshin    right      Turf         2000  Medium     Spring  Day       3600  down, up, up, down, down, up, up
+Classic June Early       OP      Sleipnir Stakes                 Tokyo      left       Dirt         2100  Medium     Spring  Day       2200  down, up
+Classic June Early       OP      Tempozan Stakes                 Hanshin    right      Dirt         1400  Sprint     Spring  Day       2200  down, up
+Classic June Late        G1      Takarazuka Kinen                Hanshin    right      Turf         2200  Medium     Spring  Day      15000  down, up, down, up
+Classic June Late        G3      Unicorn Stakes                  Tokyo      left       Dirt         1600  Mile       Spring  Day       3500  down, up
+Classic June Late        G3      Hakodate Sprint Stakes          Hakodate   right      Turf         1200  Sprint     Spring  Day       3900  up
+Classic June Late        OP      Onuma Stakes                    Hakodate   right      Dirt         1700  Mile       Spring  Day       2300  down, up
+Classic June Late        OP      Yonago Stakes                   Hanshin    right      Turf         1600  Mile       Spring  Day       2500  down, up
+Classic June Late        OP      Paradise Stakes                 Tokyo      left       Turf         1400  Sprint     Spring  Day       2500  up, down, up
+Classic June Late        OP      Akhalteke Stakes                Tokyo      left       Dirt         1600  Mile       Spring  Day       2200  down, up
+Classic June Late        OP      Sannomiya Stakes                Hanshin    right      Dirt         1800  Mile       Spring  Day       2200  up, down, up
+Classic July Early       G1      Japan Dirt Derby                Ooi        right      Dirt         2000  Medium     Summer  Night     4500  -
+Classic July Early       G3      CBC Sho                         Chukyo     left       Turf         1200  Sprint     Summer  Day       3900  down, up
+Classic July Early       G3      Tanabata Sho                    Fukushima  right      Turf         2000  Medium     Summer  Day       4100  up
+Classic July Early       G3      Hakodate Kinen                  Hakodate   right      Turf         2000  Medium     Summer  Day       4100  down, up
+Classic July Early       G3      Procyon Stakes                  Chukyo     left       Dirt         1400  Sprint     Summer  Day       3600  down, up
+Classic July Early       G3      Radio Nikkei Sho                Fukushima  right      Turf         1800  Mile       Summer  Day       3800  up
+Classic July Early       OP      Tomoe Sho                       Hakodate   right      Turf         1800  Mile       Summer  Day       2400  down, up
+Classic July Early       OP      Meitetsu Hai                    Chukyo     left       Dirt         1800  Mile       Summer  Day       2300  up, down, up, up
+Classic July Early       OP      Marine Stakes                   Hakodate   right      Dirt         1700  Mile       Summer  Day       2200  down, up
+Classic July Late        G3      Chukyo Kinen                    Chukyo     left       Turf         1600  Mile       Summer  Day       3900  down, up
+Classic July Late        G3      Queen Stakes                    Sapporo    right      Turf         1800  Mile       Summer  Day       3600  -
+Classic July Late        G3      Ibis Summer Dash                Niigata    straight   Turf         1000  Sprint     Summer  Day       3900  up, down
+Classic July Late        OP      Fukushima TV Open               Fukushima  right      Turf         1200  Sprint     Summer  Day       2300  up
+Classic August Early     G3      Elm Stakes                      Sapporo    right      Dirt         1700  Mile       Summer  Day       3600  -
+Classic August Early     G3      Kokura Kinen                    Kokura     right      Turf         2000  Medium     Summer  Day       4100  up
+Classic August Early     G3      Sekiya Kinen                    Niigata    left       Turf         1600  Mile       Summer  Day       3900  up, down
+Classic August Early     G3      Leopard Stakes                  Niigata    left       Dirt         1800  Mile       Summer  Day       4000  -
+Classic August Early     OP      UHB Sho                         Sapporo    right      Turf         1200  Sprint     Summer  Day       2300  -
+Classic August Early     OP      Aso Stakes                      Kokura     right      Dirt         1700  Mile       Summer  Day       2200  up
+Classic August Early     OP      Kanetsu Stakes                  Niigata    left       Turf         1800  Mile       Summer  Day       2400  up, down
+Classic August Early     OP      Sapporo Nikkei Open             Sapporo    right      Turf         2600  Long       Summer  Day       2600  -
+Classic August Late      G2      Sapporo Kinen                   Sapporo    right      Turf         2000  Medium     Summer  Day       7000  -
+Classic August Late      G3      Keeneland Cup                   Sapporo    right      Turf         1200  Sprint     Summer  Day       4100  -
+Classic August Late      G3      Kitakyushu Kinen                Kokura     right      Turf         1200  Sprint     Summer  Day       3900  down
+Classic August Late      OP      BSN Sho                         Niigata    left       Dirt         1800  Mile       Summer  Day       2300  -
+Classic August Late      OP      NST Sho                         Niigata    left       Dirt         1200  Sprint     Summer  Day       2200  -
+Classic August Late      OP      Toki Stakes                     Niigata    left       Turf         1400  Sprint     Summer  Day       2500  -
+Classic August Late      OP      Kokura Nikkei Open              Kokura     right      Turf         1800  Mile       Summer  Day       2400  up
+Classic September Early  G2      Prix Niel                       Longchamp  right      Turf         2400  Medium     Fall    Day       5000  up, down, down
+Classic September Early  G2      Rose Stakes                     Hanshin    right      Turf         1800  Mile       Fall    Day       5200  down, up
+Classic September Early  G2      Centaur Stakes                  Hanshin    right      Turf         1200  Sprint     Fall    Day       5900  down, up
+Classic September Early  G3      Shion Stakes                    Nakayama   right      Turf         2000  Medium     Fall    Day       3500  up, up, down, up
+Classic September Early  G3      Niigata Kinen                   Niigata    left       Turf         2000  Medium     Fall    Day       4100  up, down
+Classic September Early  G3      Keisei Hai Autumn Handicap      Nakayama   right      Turf         1600  Mile       Fall    Day       3900  down, up
+Classic September Early  OP      Enif Stakes                     Hanshin    right      Dirt         1400  Sprint     Fall    Day       2300  down, up
+Classic September Early  OP      Tancho Stakes                   Sapporo    right      Turf         2600  Long       Fall    Day       2400  -
+Classic September Early  OP      Radio Nippon Sho                Nakayama   right      Dirt         1800  Mile       Fall    Day       2200  up, up, down, up
+Classic September Late   G1      Sprinters Stakes                Nakayama   right      Turf         1200  Sprint     Fall    Day      13000  down, up
+Classic September Late   G2      All Comers                      Nakayama   right      Turf         2200  Medium     Fall    Day       6700  up, up, down, up
+Classic September Late   G2      St. Lite Kinen                  Nakayama   right      Turf         2200  Medium     Fall    Day       5400  up, up, down, up
+Classic September Late   G2      Kobe Shimbun Hai                Hanshin    right      Turf         2400  Medium     Fall    Day       5400  down, up, down, down, up
+Classic September Late   G3      Sirius Stakes                   Hanshin    right      Dirt         2000  Medium     Fall    Day       3600  down, up, down, up
+Classic September Late   OP      Nagatsuki Stakes                Nakayama   right      Dirt         1200  Sprint     Fall    Day       2200  down, up
+Classic September Late   OP      Port Island Stakes              Hanshin    right      Turf         1600  Mile       Fall    Day       2500  down, up
+Classic October Early    G2      Mainichi Okan                   Tokyo      left       Turf         1800  Mile       Fall    Day       6700  up, down, up
+Classic October Early    G2      Kyoto Daishoten                 Kyoto      right      Turf         2400  Medium     Fall    Day       6700  up, up, down
+Classic October Early    G2      Fuchu Umamusume Stakes          Tokyo      left       Turf         1800  Mile       Fall    Day       5500  up, down, up
+Classic October Early    OP      Opal Stakes                     Kyoto      right      Turf         1200  Sprint     Fall    Day       2500  up, down
+Classic October Early    OP      October Stakes                  Tokyo      left       Turf         2000  Medium     Fall    Day       2600  up, down, up
+Classic October Early    OP      Uzumasa Stakes                  Kyoto      right      Dirt         1800  Mile       Fall    Day       2200  up, down
+Classic October Early    OP      Shinetsu Stakes                 Niigata    left       Turf         1400  Sprint     Fall    Day       2500  -
+Classic October Early    OP      Green Channel Cup               Tokyo      left       Dirt         1400  Sprint     Fall    Day       2300  down, up
+Classic October Late     G1      Shuka Sho                       Kyoto      right      Turf         2000  Medium     Fall    Day      10000  up, down
+Classic October Late     G1      Kikuka Sho                      Kyoto      right      Turf         3000  Long       Fall    Day      12000  up, up, down, up, up, down
+Classic October Late     G1      Tenno Sho (Autumn)              Tokyo      left       Turf         2000  Medium     Fall    Day      15000  up, up, down, up, up, down
+Classic October Late     G2      Fuji Stakes                     Tokyo      left       Turf         1600  Mile       Fall    Day       5900  up, down, up
+Classic October Late     G2      Swan Stakes                     Kyoto      right      Turf         1400  Sprint     Fall    Day       5900  up, up, down
+Classic October Late     OP      Brazil Cup                      Tokyo      left       Dirt         2100  Medium     Fall    Day       2300  down, up
+Classic October Late     OP      Muromachi Stakes                Kyoto      right      Dirt         1200  Sprint     Fall    Day       2200  up, down
+Classic October Late     OP      Cassiopeia Stakes               Kyoto      right      Turf         1800  Mile       Fall    Day       2600  up, up, down
+Classic October Late     OP      Lumiere Autumn Dash             Niigata    straight   Turf         1000  Sprint     Fall    Day       2500  up, down
+Classic November Early   G1      JBC Sprint                      Ooi?       right      Dirt         1200  Sprint     Fall    Evening   6000  -
+Classic November Early   G1      JBC Classic                     Ooi?       right      Dirt         2000  Medium     Fall    Evening   8000  -
+Classic November Early   G1      JBC Ladies’ Classic             Ooi?       right      Dirt         1800  Mile       Fall    Evening   4100  -
+Classic November Early   G1      Queen Elizabeth II Cup          Kyoto      right      Turf         2200  Medium     Fall    Day      10500  up, up, down
+Classic November Early   G2      Copa Republica Argentina        Tokyo      left       Turf         2500  Long       Fall    Day       5700  up, up, down, up, up
+Classic November Early   G3      Miyako Stakes                   Kyoto      right      Dirt         1800  Mile       Fall    Day       3800  up, down
+Classic November Early   G3      Fukushima Kinen                 Fukushima  right      Turf         2000  Medium     Fall    Day       4100  up
+Classic November Early   G3      Musashino Stakes                Tokyo      left       Dirt         1600  Mile       Fall    Day       3800  down, up
+Classic November Early   OP      Oro Cup                         Tokyo      left       Turf         1400  Sprint     Fall    Day       2500  up, down, up
+Classic November Late    G1      Japan Cup                       Tokyo      left       Turf         2400  Medium     Fall    Day      30000  up, up, down, up, up
+Classic November Late    G1      Mile Championship               Kyoto      right      Turf         1600  Mile       Fall    Day      11000  up, up, down
+Classic November Late    G3      Keihan Hai                      Kyoto      right      Turf         1200  Sprint     Fall    Day       3900  up, down
+Classic November Late    OP      Capital Stakes                  Tokyo      left       Turf         1600  Mile       Fall    Day       2500  up, down, up
+Classic November Late    OP      Andromeda Stakes                Kyoto      right      Turf         2000  Medium     Fall    Day       2600  up, down
+Classic November Late    OP      Shimotsuki Stakes               Tokyo      left       Dirt         1400  Sprint     Fall    Day       2200  down, up
+Classic November Late    OP      Autumn Leaf Stakes              Kyoto      right      Dirt         1200  Sprint     Fall    Day       2200  up, down
+Classic November Late    OP      Fukushima Minyu Cup             Fukushima  right      Dirt         1700  Mile       Fall    Day       2300  down
+Classic December Early   G1      Champions Cup                   Chukyo     left       Dirt         1800  Mile       Winter  Day      10000  up, down, up, up
+Classic December Early   G2      Stayers Stakes                  Nakayama   right      Turf         3600  Long       Winter  Day       6200  up, up, down, up
+Classic December Early   G3      Challenge Cup                   Hanshin    right      Turf         2000  Medium     Winter  Day       4100  down, up, up, down, down, up, up
+Classic December Early   G3      Capella Stakes                  Nakayama   right      Dirt         1200  Sprint     Winter  Day       3600  down, up
+Classic December Early   G3      Turquoise Stakes                Nakayama   right      Turf         1600  Mile       Winter  Day       3600  down, up
+Classic December Early   G3      Chunichi Shimbun Hai            Chukyo     left       Turf         2000  Medium     Winter  Day       4100  up, down, up, up
+Classic December Early   OP      Rigel Stakes                    Hanshin    right      Turf         1600  Mile       Winter  Day       2500  down, up
+Classic December Early   OP      Shiwasu Stakes                  Nakayama   right      Dirt         1800  Mile       Winter  Day       2300  up, up, down, up
+Classic December Early   OP      December Stakes                 Nakayama   right      Turf         1800  Mile       Winter  Day       2600  up, up, down, up, up
+Classic December Early   OP      Tanzanite Stakes                Hanshin    right      Turf         1200  Sprint     Winter  Day       2300  down, up
+Classic December Early   OP      Lapis Lazuli Stakes             Nakayama   right      Turf         1200  Sprint     Winter  Day       2500  down, up
+Classic December Late    G1      Arima Kinen                     Nakayama   right      Turf         2500  Long       Winter  Day      30000  up, up, down, up
+Classic December Late    G1      Tokyo Daishoten                 Ooi        right      Dirt         2000  Medium     Winter  Day       8000  -
+Classic December Late    G2      Hanshin Cup                     Hanshin    right      Turf         1400  Sprint     Winter  Day       6700  down, up
+Classic December Late    OP      Galaxy Stakes                   Hanshin    right      Dirt         1400  Sprint     Winter  Day       2200  down, up
+Classic December Late    OP      Betelgeuse Stakes               Hanshin    right      Dirt         1800  Mile       Winter  Day       2200  up, down, up
+Senior January Early     G2      Nikkei Shinshun Hai             Kyoto      right      Turf         2400  Medium     Winter  Day       5700  up, up, down
+Senior January Early     G3      Aichi Hai                       Chukyo     left       Turf         2000  Medium     Winter  Day       3600  up, down, up, up
+Senior January Early     G3      Kyoto Kimpai                    Kyoto      right      Turf         1600  Mile       Winter  Day       4100  up, up, down
+Senior January Early     G3      Nakayama Kimpai                 Nakayama   right      Turf         2000  Medium     Winter  Day       4100  up, up, down, up
+Senior January Early     OP      Manyo Stakes                    Kyoto      right      Turf         3000  Long       Winter  Day       2400  up, up, down, up, up, down
+Senior January Early     OP      Pollux Stakes                   Nakayama   right      Dirt         1800  Mile       Winter  Day       2200  up, up, down, up
+Senior January Early     OP      January Stakes                  Nakayama   right      Dirt         1200  Sprint     Winter  Day       2200  down, up
+Senior January Early     OP      New Year Stakes                 Nakayama   right      Turf         1600  Mile       Winter  Day       2500  down, up
+Senior January Early     OP      Carbuncle Stakes                Nakayama   right      Turf         1200  Sprint     Winter  Day       2300  down, up
+Senior January Early     OP      Yodo Tankyori Stakes            Kyoto      right      Turf         1200  Sprint     Winter  Day       2500  up, down
+Senior January Late      G2      American JCC                    Nakayama   right      Turf         2200  Medium     Winter  Day       6200  up, up, down, up
+Senior January Late      G2      Tokai Stakes                    Chukyo     left       Dirt         1800  Mile       Winter  Day       5500  up, down, up, up
+Senior January Late      G3      Negishi Stakes                  Tokyo      left       Dirt         1400  Sprint     Winter  Day       3800  down, up
+Senior January Late      G3      Silk Road Stakes                Kyoto      right      Turf         1200  Sprint     Winter  Day       3900  up, down
+Senior January Late      OP      Subaru Stakes                   Kyoto      right      Dirt         1400  Sprint     Winter  Day       2300  up, down
+Senior January Late      OP      Shirafuji Stakes                Tokyo      left       Turf         2000  Medium     Winter  Day       2600  up, down, up
+Senior February Early    G2      Kyoto Kinen                     Kyoto      right      Turf         2200  Medium     Winter  Day       6200  up, down
+Senior February Early    G3      Tokyo Shimbun Hai               Tokyo      left       Turf         1600  Mile       Winter  Day       3900  up, down, up
+Senior February Early    OP      Rakuyo Stakes                   Kyoto      right      Turf         1600  Mile       Winter  Day       2500  up, up, down
+Senior February Early    OP      Yamato Stakes                   Kyoto      right      Dirt         1200  Sprint     Winter  Day       2200  up, down
+Senior February Early    OP      Aldebaran Stakes                Kyoto      right      Dirt         1900  Medium     Winter  Day       2200  up, down
+Senior February Early    OP      Valentine Stakes                Tokyo      left       Dirt         1400  Sprint     Winter  Day       2200  down, up
+Senior February Late     G1      February Stakes                 Tokyo      left       Dirt         1600  Mile       Winter  Day      10000  down, up
+Senior February Late     G2      Nakayama Kinen                  Nakayama   right      Turf         1800  Mile       Winter  Day       6700  up, up, down, up, up
+Senior February Late     G3      Hankyu Hai                      Hanshin    right      Turf         1400  Sprint     Winter  Day       4100  down, up
+Senior February Late     G3      Diamond Stakes                  Tokyo      left       Turf         3400  Long       Winter  Day       4100  up, down, up, up, down, up
+Senior February Late     G3      Kokura Daishoten                Kokura     right      Turf         1800  Mile       Winter  Day       4100  up
+Senior February Late     G3      Kyoto Umamusume Stakes          Kyoto      right      Turf         1400  Sprint     Winter  Day       3600  up, up, down
+Senior February Late     OP      Sobu Stakes                     Nakayama   right      Dirt         1800  Mile       Winter  Day       2200  up, up, down, up
+Senior February Late     OP      Kitakyushu Tankyori Stakes      Kokura     right      Turf         1200  Sprint     Winter  Day       2300  down
+Senior March Early       G2      Kinko Sho                       Chukyo     left       Turf         2000  Medium     Spring  Day       6700  up, down, up, up
+Senior March Early       G3      Ocean Stakes                    Nakayama   right      Turf         1200  Sprint     Spring  Day       4100  down, up
+Senior March Early       G3      Nakayama Umamusume Stakes       Nakayama   right      Turf         1800  Mile       Spring  Day       3600  up, up, down, up, up
+Senior March Early       OP      Kochi Stakes                    Nakayama   right      Turf         1600  Mile       Spring  Day       2500  down, up
+Senior March Early       OP      Nigawa Stakes                   Hanshin    right      Dirt         2000  Medium     Spring  Day       2300  down, up, down, up
+Senior March Early       OP      Osakajo Stakes                  Hanshin    right      Turf         1800  Mile       Spring  Day       2600  down, up
+Senior March Early       OP      Polaris Stakes                  Hanshin    right      Dirt         1400  Sprint     Spring  Day       2200  down, up
+Senior March Late        G1      Osaka Hai                       Hanshin    right      Turf         2000  Medium     Spring  Day      13500  down, up, up, down, down, up, up
+Senior March Late        G1      Takamatsunomiya Kinen           Chukyo     left       Turf         1200  Sprint     Spring  Day      13000  down, up
+Senior March Late        G2      Nikkei Sho                      Nakayama   right      Turf         2500  Long       Spring  Day       6700  up, up, down, up
+Senior March Late        G2      Hanshin Daishoten               Hanshin    right      Turf         3000  Long       Spring  Day       6700  down, up, down, up
+Senior March Late        G3      March Stakes                    Nakayama   right      Dirt         1800  Mile       Spring  Day       3600  up, up, down, up
+Senior March Late        OP      Chiba Stakes                    Nakayama   right      Dirt         1200  Sprint     Spring  Day       2200  down, up
+Senior March Late        OP      Rokko Stakes                    Hanshin    right      Turf         1600  Mile       Spring  Day       2500  down, up
+Senior April Early       G2      Hanshin Umamusume Stakes        Hanshin    right      Turf         1600  Mile       Spring  Day       5500  down, up
+Senior April Early       G3      Antares Stakes                  Hanshin    right      Dirt         1800  Mile       Spring  Day       3600  up, down, up
+Senior April Early       G3      Lord Derby Challenge Trophy     Nakayama   right      Turf         1600  Mile       Spring  Day       3900  down, up
+Senior April Early       OP      Coral Stakes                    Hanshin    right      Dirt         1400  Sprint     Spring  Day       2300  down, up
+Senior April Early       OP      Keiyo Stakes                    Nakayama   right      Dirt         1200  Sprint     Spring  Day       2300  down, up
+Senior April Early       OP      Shunrai Stakes                  Nakayama   right      Turf         1200  Sprint     Spring  Day       2500  down, up
+Senior April Early       OP      Azumakofuji Stakes              Fukushima  right      Dirt         1700  Mile       Spring  Day       2200  down
+Senior April Early       OP      Fukushima Mimpo Hai             Fukushima  right      Turf         2000  Medium     Spring  Day       2600  up
+Senior April Late        G1      Tenno Sho (Spring)              Kyoto      right      Turf         3200  Long       Spring  Day      15000  up, up, down, up, up, down
+Senior April Late        G2      Milers Cup                      Kyoto      right      Turf         1600  Mile       Spring  Day       5900  up, up, down
+Senior April Late        G3      Fukushima Umamusume Stakes      Fukushima  right      Turf         1800  Mile       Spring  Day       3800  up
+Senior April Late        OP      Oasis Stakes                    Tokyo      left       Dirt         1600  Mile       Spring  Day       2300  down, up
+Senior April Late        OP      Tennozan Stakes                 Kyoto      right      Dirt         1200  Sprint     Spring  Day       2200  up, down
+Senior May Early         G1      Victoria Mile                   Tokyo      left       Turf         1600  Mile       Spring  Day      10500  up, down, up
+Senior May Early         G2      Keio Hai Spring Cup             Tokyo      left       Turf         1400  Sprint     Spring  Day       5900  up, down, up
+Senior May Early         G3      Niigata Daishoten               Niigata    left       Turf         2000  Medium     Spring  Day       4100  up, down
+Senior May Early         OP      Ritto Stakes                    Kyoto      right      Dirt         1400  Sprint     Spring  Day       2300  up, down
+Senior May Early         OP      Kurama Stakes                   Kyoto      right      Turf         1200  Sprint     Spring  Day       2300  up, down
+Senior May Early         OP      Brilliant Stakes                Tokyo      left       Dirt         2100  Medium     Spring  Day       2300  down, up
+Senior May Early         OP      Miyakooji Stakes                Kyoto      right      Turf         1800  Mile       Spring  Day       2600  up, up, down
+Senior May Early         OP      Metropolitan Stakes             Tokyo      left       Turf         2400  Medium     Spring  Day       2600  up, up, down, up, up
+Senior May Early         OP      Tanigawadake Stakes             Niigata    left       Turf         1600  Mile       Spring  Day       2500  up, down
+Senior May Late          G2      Meguro Kinen                    Tokyo      left       Turf         2500  Long       Spring  Day       5700  up, up, down, up, up
+Senior May Late          G3      Heian Stakes                    Kyoto      right      Dirt         1900  Medium     Spring  Day       3600  up, down
+Senior May Late          OP      May Stakes                      Tokyo      left       Turf         1800  Mile       Spring  Day       2400  up, down, up
+Senior May Late          OP      Idaten Stakes                   Niigata    straight   Turf         1000  Sprint     Spring  Day       2300  up, down
+Senior May Late          OP      Keyaki Stakes                   Tokyo      left       Dirt         1400  Sprint     Spring  Day       2200  down, up
+Senior May Late          OP      Azuchijo Stakes                 Kyoto      right      Turf         1400  Sprint     Spring  Day       2500  up, up, down
+Senior June Early        G1      Yasuda Kinen                    Tokyo      left       Turf         1600  Mile       Spring  Day      13000  up, down, up
+Senior June Early        G3      Epsom Cup                       Tokyo      left       Turf         1800  Mile       Spring  Day       4100  up, down, up
+Senior June Early        G3      Naruo Kinen                     Hanshin    right      Turf         2000  Medium     Spring  Day       4100  down, up, up, down, down, up, up
+Senior June Early        G3      Mermaid Stakes                  Hanshin    right      Turf         2000  Medium     Spring  Day       3600  down, up, up, down, down, up, up
+Senior June Early        OP      Sleipnir Stakes                 Tokyo      left       Dirt         2100  Medium     Spring  Day       2200  down, up
+Senior June Early        OP      Tempozan Stakes                 Hanshin    right      Dirt         1400  Sprint     Spring  Day       2200  down, up
+Senior June Late         G1      Teio Sho                        Ooi        right      Dirt         2000  Medium     Spring  Night     6000  -
+Senior June Late         G1      Takarazuka Kinen                Hanshin    right      Turf         2200  Medium     Spring  Day      15000  down, up, down, up
+Senior June Late         G3      Hakodate Sprint Stakes          Hakodate   right      Turf         1200  Sprint     Spring  Day       3900  up
+Senior June Late         OP      Onuma Stakes                    Hakodate   right      Dirt         1700  Mile       Spring  Day       2300  down, up
+Senior June Late         OP      Yonago Stakes                   Hanshin    right      Turf         1600  Mile       Spring  Day       2500  down, up
+Senior June Late         OP      Paradise Stakes                 Tokyo      left       Turf         1400  Sprint     Spring  Day       2500  up, down, up
+Senior June Late         OP      Akhalteke Stakes                Tokyo      left       Dirt         1600  Mile       Spring  Day       2200  down, up
+Senior June Late         OP      Sannomiya Stakes                Hanshin    right      Dirt         1800  Mile       Spring  Day       2200  up, down, up
+Senior July Early        G3      CBC Sho                         Chukyo     left       Turf         1200  Sprint     Summer  Day       3900  down, up
+Senior July Early        G3      Tanabata Sho                    Fukushima  right      Turf         2000  Medium     Summer  Day       4100  up
+Senior July Early        G3      Hakodate Kinen                  Hakodate   right      Turf         2000  Medium     Summer  Day       4100  down, up
+Senior July Early        G3      Procyon Stakes                  Chukyo     left       Dirt         1400  Sprint     Summer  Day       3600  down, up
+Senior July Early        OP      Tomoe Sho                       Hakodate   right      Turf         1800  Mile       Summer  Day       2400  down, up
+Senior July Early        OP      Meitetsu Hai                    Chukyo     left       Dirt         1800  Mile       Summer  Day       2300  up, down, up, up
+Senior July Early        OP      Marine Stakes                   Hakodate   right      Dirt         1700  Mile       Summer  Day       2200  down, up
+Senior July Late         G3      Chukyo Kinen                    Chukyo     left       Turf         1600  Mile       Summer  Day       3900  down, up
+Senior July Late         G3      Queen Stakes                    Sapporo    right      Turf         1800  Mile       Summer  Day       3600  -
+Senior July Late         G3      Ibis Summer Dash                Niigata    straight   Turf         1000  Sprint     Summer  Day       3900  up, down
+Senior July Late         OP      Fukushima TV Open               Fukushima  right      Turf         1200  Sprint     Summer  Day       2300  up
+Senior August Early      G3      Elm Stakes                      Sapporo    right      Dirt         1700  Mile       Summer  Day       3600  -
+Senior August Early      G3      Kokura Kinen                    Kokura     right      Turf         2000  Medium     Summer  Day       4100  up
+Senior August Early      G3      Sekiya Kinen                    Niigata    left       Turf         1600  Mile       Summer  Day       3900  up, down
+Senior August Early      OP      UHB Sho                         Sapporo    right      Turf         1200  Sprint     Summer  Day       2300  -
+Senior August Early      OP      Aso Stakes                      Kokura     right      Dirt         1700  Mile       Summer  Day       2200  up
+Senior August Early      OP      Kanetsu Stakes                  Niigata    left       Turf         1800  Mile       Summer  Day       2400  up, down
+Senior August Early      OP      Sapporo Nikkei Open             Sapporo    right      Turf         2600  Long       Summer  Day       2600  -
+Senior August Late       G2      Sapporo Kinen                   Sapporo    right      Turf         2000  Medium     Summer  Day       7000  -
+Senior August Late       G3      Keeneland Cup                   Sapporo    right      Turf         1200  Sprint     Summer  Day       4100  -
+Senior August Late       G3      Kitakyushu Kinen                Kokura     right      Turf         1200  Sprint     Summer  Day       3900  down
+Senior August Late       OP      BSN Sho                         Niigata    left       Dirt         1800  Mile       Summer  Day       2300  -
+Senior August Late       OP      NST Sho                         Niigata    left       Dirt         1200  Sprint     Summer  Day       2200  -
+Senior August Late       OP      Toki Stakes                     Niigata    left       Turf         1400  Sprint     Summer  Day       2500  -
+Senior August Late       OP      Kokura Nikkei Open              Kokura     right      Turf         1800  Mile       Summer  Day       2400  up
+Senior September Early   G2      Prix Foy                        Longchamp  right      Turf         2400  Medium     Fall    Day       5000  up, down
+Senior September Early   G2      Centaur Stakes                  Hanshin    right      Turf         1200  Sprint     Fall    Day       5900  down, up
+Senior September Early   G3      Niigata Kinen                   Niigata    left       Turf         2000  Medium     Fall    Day       4100  up, down
+Senior September Early   G3      Keisei Hai Autumn Handicap      Nakayama   right      Turf         1600  Mile       Fall    Day       3900  down, up
+Senior September Early   OP      Enif Stakes                     Hanshin    right      Dirt         1400  Sprint     Fall    Day       2300  down, up
+Senior September Early   OP      Tancho Stakes                   Sapporo    right      Turf         2600  Long       Fall    Day       2400  -
+Senior September Early   OP      Radio Nippon Sho                Nakayama   right      Dirt         1800  Mile       Fall    Day       2200  up, up, down, up
+Senior September Late    G1      Sprinters Stakes                Nakayama   right      Turf         1200  Sprint     Fall    Day      13000  down, up
+Senior September Late    G2      All Comers                      Nakayama   right      Turf         2200  Medium     Fall    Day       6700  up, up, down, up
+Senior September Late    G3      Sirius Stakes                   Hanshin    right      Dirt         2000  Medium     Fall    Day       3600  down, up, down, up
+Senior September Late    OP      Nagatsuki Stakes                Nakayama   right      Dirt         1200  Sprint     Fall    Day       2200  down, up
+Senior September Late    OP      Port Island Stakes              Hanshin    right      Turf         1600  Mile       Fall    Day       2500  down, up
+Senior October Early     G2      Mainichi Okan                   Tokyo      left       Turf         1800  Mile       Fall    Day       6700  up, down, up
+Senior October Early     G2      Kyoto Daishoten                 Kyoto      right      Turf         2400  Medium     Fall    Evening   6700  up, up, down
+Senior October Early     G2      Fuchu Umamusume Stakes          Tokyo      left       Turf         1800  Mile       Fall    Day       5500  up, down, up
+Senior October Early     OP      Opal Stakes                     Kyoto      right      Turf         1200  Sprint     Fall    Day       2500  up, down
+Senior October Early     OP      October Stakes                  Tokyo      left       Turf         2000  Medium     Fall    Day       2600  up, down, up
+Senior October Early     OP      Uzumasa Stakes                  Kyoto      right      Dirt         1800  Mile       Fall    Day       2200  up, down
+Senior October Early     OP      Shinetsu Stakes                 Niigata    left       Turf         1400  Sprint     Fall    Day       2500  -
+Senior October Early     OP      Green Channel Cup               Tokyo      left       Dirt         1400  Sprint     Fall    Day       2300  down, up
+Senior October Late      G1      Tenno Sho (Autumn)              Tokyo      left       Turf         2000  Medium     Fall    Day      15000  up, down, up
+Senior October Late      G2      Fuji Stakes                     Tokyo      left       Turf         1600  Mile       Fall    Day       5900  up, down, up
+Senior October Late      G2      Swan Stakes                     Kyoto      right      Turf         1400  Sprint     Fall    Day       5900  up, up, down
+Senior October Late      OP      Brazil Cup                      Tokyo      left       Dirt         2100  Medium     Fall    Day       2300  down, up
+Senior October Late      OP      Muromachi Stakes                Kyoto      right      Dirt         1200  Sprint     Fall    Day       2200  up, down
+Senior October Late      OP      Cassiopeia Stakes               Kyoto      right      Turf         1800  Mile       Fall    Day       2600  up, up, down
+Senior October Late      OP      Lumiere Autumn Dash             Niigata    straight   Turf         1000  Sprint     Fall    Day       2500  up, down
+Senior November Early    G1      JBC Sprint                      Ooi?       right      Dirt         1200  Sprint     Fall    Evening   6000  -
+Senior November Early    G1      JBC Classic                     Ooi?       right      Dirt         2000  Medium     Fall    Evening   8000  -
+Senior November Early    G1      JBC Ladies’ Classic             Ooi?       right      Dirt         1800  Mile       Fall    Evening   4100  -
+Senior November Early    G1      Queen Elizabeth II Cup          Kyoto      right      Turf         2200  Medium     Fall    Day      10500  up, up, down
+Senior November Early    G2      Copa Republica Argentina        Tokyo      left       Turf         2500  Long       Fall    Day       5700  up, up, down, up, up
+Senior November Early    G3      Miyako Stakes                   Kyoto      right      Dirt         1800  Mile       Fall    Day       3800  up, down
+Senior November Early    G3      Fukushima Kinen                 Fukushima  right      Turf         2000  Medium     Fall    Day       4100  up
+Senior November Early    G3      Musashino Stakes                Tokyo      left       Dirt         1600  Mile       Fall    Day       3800  down, up
+Senior November Early    OP      Oro Cup                         Tokyo      left       Turf         1400  Sprint     Fall    Day       2500  up, down, up
+Senior November Late     G1      Japan Cup                       Tokyo      left       Turf         2400  Medium     Fall    Day      30000  up, up, down, up, up
+Senior November Late     G1      Mile Championship               Kyoto      right      Turf         1600  Mile       Fall    Day      11000  up, up, down
+Senior November Late     G3      Keihan Hai                      Kyoto      right      Turf         1200  Sprint     Fall    Day       3900  up, down
+Senior November Late     OP      Capital Stakes                  Tokyo      left       Turf         1600  Mile       Fall    Day       2500  up, down, up
+Senior November Late     OP      Andromeda Stakes                Kyoto      right      Turf         2000  Medium     Fall    Day       2600  up, down
+Senior November Late     OP      Shimotsuki Stakes               Tokyo      left       Dirt         1400  Sprint     Fall    Day       2200  down, up
+Senior November Late     OP      Autumn Leaf Stakes              Kyoto      right      Dirt         1200  Sprint     Fall    Day       2200  up, down
+Senior November Late     OP      Fukushima Minyu Cup             Fukushima  right      Dirt         1700  Mile       Fall    Day       2300  down
+Senior December Early    G1      Champions Cup                   Chukyo     left       Dirt         1800  Mile       Winter  Day      10000  up, down, up, up
+Senior December Early    G2      Stayers Stakes                  Nakayama   right      Turf         3600  Long       Winter  Day       6200  up, up, down, up
+Senior December Early    G3      Challenge Cup                   Hanshin    right      Turf         2000  Medium     Winter  Day       4100  down, up, up, down, down, up, up
+Senior December Early    G3      Capella Stakes                  Nakayama   right      Dirt         1200  Sprint     Winter  Day       3600  down, up
+Senior December Early    G3      Turquoise Stakes                Nakayama   right      Turf         1600  Mile       Winter  Day       3600  down, up
+Senior December Early    G3      Chunichi Shimbun Hai            Chukyo     left       Turf         2000  Medium     Winter  Day       4100  up, down, up, up
+Senior December Early    OP      Rigel Stakes                    Hanshin    right      Turf         1600  Mile       Winter  Day       2500  down, up
+Senior December Early    OP      Shiwasu Stakes                  Nakayama   right      Dirt         1800  Mile       Winter  Day       2300  up, up, down, up
+Senior December Early    OP      December Stakes                 Nakayama   right      Turf         1800  Mile       Winter  Day       2600  up, up, down, up, up
+Senior December Early    OP      Tanzanite Stakes                Hanshin    right      Turf         1200  Sprint     Winter  Day       2300  down, up
+Senior December Early    OP      Lapis Lazuli Stakes             Nakayama   right      Turf         1200  Sprint     Winter  Day       2500  down, up
+Senior December Late     G1      Arima Kinen                     Nakayama   right      Turf         2500  Long       Winter  Day      30000  up, up, down, up
+Senior December Late     G1      Tokyo Daishoten                 Ooi        right      Dirt         2000  Medium     Winter  Evening   8000  -
+Senior December Late     G2      Hanshin Cup                     Hanshin    right      Turf         1400  Sprint     Winter  Day       6700  down, up
+Senior December Late     OP      Galaxy Stakes                   Hanshin    right      Dirt         1400  Sprint     Winter  Day       2200  down, up
+Senior December Late     OP      Betelgeuse Stakes               Hanshin    right      Dirt         1800  Mile       Winter  Day       2200  up, down, up
+Finale Season 1          EX      URA Finals Qualifier            ?          ?          ?               ?  ?          Winter  ?         7000  ?
+Finale Season 3          EX      URA Finals Semifinal            ?          ?          ?               ?  ?          Winter  ?        10000  ?
+Finale Season 5          EX      URA Finals Final                ?          ?          ?               ?  ?          Winter  ?        30000  ?
+Finals ?                 EX      Grand Masters                   ?          ?          ?               ?  ?          ?       ?            ?  ?
+Finals ?                 EX      Twinkle Star Climax             ?          ?          ?               ?  ?          ?       ?            ?  ?

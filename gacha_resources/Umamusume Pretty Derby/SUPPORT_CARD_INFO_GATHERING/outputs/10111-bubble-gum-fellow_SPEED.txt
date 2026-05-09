@@ -1,0 +1,8 @@
+Friendship Bonus: 20
+Mood Bonus: 35
+Speed Bonus: 1
+Initial Speed Up: 20
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Specialty Rate Up: 35

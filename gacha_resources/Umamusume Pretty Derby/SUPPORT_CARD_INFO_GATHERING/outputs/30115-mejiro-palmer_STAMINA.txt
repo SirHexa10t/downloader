@@ -1,0 +1,10 @@
+Unique Effect
+    The more energy you have, the more Training Effectiveness you'll gain
+Friendship Bonus: 35
+Initial Stamina Up: 30
+Initial Guts Up: 30
+Starting Bond Up: 15
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 80
+Skill Point Bonus: 1

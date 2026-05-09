@@ -1,0 +1,12 @@
+Unique Effect
+    Increases Power gain when training together (1)
+    Increases stat gain from races (5%)
+Friendship Bonus: 30
+Speed Bonus: 1
+Increased Training: 5
+Starting Bond Up: 20
+Race Bonus: 5
+Fan Count Bonus: 10
+Hint Lv. Bonus: 2
+Hint Rate Up: 40
+Specialty Rate Up: 50

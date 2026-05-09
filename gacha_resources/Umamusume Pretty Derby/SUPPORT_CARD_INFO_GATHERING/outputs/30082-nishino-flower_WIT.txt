@@ -1,0 +1,11 @@
+Unique Effect
+    Gain Wit Bonus (3) when the bond gauge is full
+Friendship Bonus: 30
+Speed Bonus: 1
+Increased Training: 5
+Initial Wisdom Up: 30
+Starting Bond Up: 30
+Hint Lv. Bonus: 1
+Hint Rate Up: 20
+Specialty Rate Up: 50
+Wisdom Training Recovery Up: 5

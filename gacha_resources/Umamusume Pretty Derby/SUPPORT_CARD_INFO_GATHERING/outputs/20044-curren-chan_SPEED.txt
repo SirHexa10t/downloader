@@ -1,0 +1,11 @@
+Unique Effect
+    Increases the effectiveness of Friendship Training (10%)
+    Increases stat gain from races (5%)
+Friendship Bonus: 20
+Speed Bonus: 1
+Increased Training: 10
+Initial Speed Up: 20
+Starting Bond Up: 30
+Hint Lv. Bonus: 2
+Hint Rate Up: 30
+Specialty Rate Up: 65

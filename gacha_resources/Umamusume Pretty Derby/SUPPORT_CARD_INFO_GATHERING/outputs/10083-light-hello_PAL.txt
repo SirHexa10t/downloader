@@ -1,0 +1,9 @@
+Increased Training: 5
+Initial Guts Up: 25
+Starting Bond Up: 25
+Race Bonus: 5
+Fan Count Bonus: 10
+Event Recovery Amount Up: 40
+Event Effect Up: 25
+Failure Rate Down: 20
+Energy Discount: 10

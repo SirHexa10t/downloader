@@ -1,0 +1,11 @@
+Unique Effect
+    When the bond gauge is 80 or higher and this card is in a facility different from its type, gain Increased Training (20)
+Friendship Bonus: 35
+Mood Bonus: 30
+Guts Bonus: 1
+Initial Guts Up: 30
+Starting Bond Up: 25
+Race Bonus: 10
+Fan Count Bonus: 20
+Hint Lv. Bonus: 3
+Hint Rate Up: 50
