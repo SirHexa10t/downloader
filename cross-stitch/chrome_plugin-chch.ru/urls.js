@@ -5,8 +5,12 @@
 //   https://data31.chch.ru/albums/gallery/372752-a651b-105637575-200-ub8995.jpg
 // Parts: {host}/{albumId}-{mid-hash}-{photoId}-{size}-{trailing-hash}.jpg
 // Trailing hash is typically a `u`-prefixed hex (e.g. `ub8995`).
+// The `Оригинал` (zoom=8) page uses an EMPTY size segment — e.g.
+//   …/372752-cbcdb-105637575--ub8995.jpg  ← note the double dash. That
+// variant returns the actual original-resolution file (often >5x bigger
+// than `m{W}x{H}`), so we accept an empty size segment here too.
 const GALLERY_IMG_RE =
-  /^https?:\/\/data\d+\.chch\.ru\/albums\/gallery\/(\d+)-([a-z0-9]+)-(\d+)-([^-]+)-([a-z0-9]+)\.(jpg|jpeg|png|gif|webp)$/i;
+  /^https?:\/\/data\d+\.chch\.ru\/albums\/gallery\/(\d+)-([a-z0-9]+)-(\d+)-([^-]*)-([a-z0-9]+)\.(jpg|jpeg|png|gif|webp)$/i;
 
 // Image size segment ranking. We *avoid* `src` even though it sounds like the
 // original — chch.ru gates that URL and serves a 3.9KB "very small outfile"
@@ -32,8 +36,22 @@ export function parseGalleryUrl(url) {
   return { albumId, midHash, photoId, size, trailingHash, ext, url };
 }
 
+// From a `?subpanel=zoom&zoom=8` page's HTML, find the empty-size original
+// URL for a given photoId. Returns the URL or null. The match looks like
+//   https://data31.chch.ru/albums/gallery/372752-cbcdb-105637575--ub8995.jpg
+// (note the `--` where every other size variant has a non-empty segment).
+export function extractOriginalUrl(zoomPageHtml, photoId) {
+  const re = new RegExp(
+    `https?:\\/\\/data\\d+\\.chch\\.ru\\/albums\\/gallery\\/\\d+-[a-z0-9]+-${photoId}--[a-z0-9]+\\.(?:jpg|jpeg|png|gif|webp)`,
+    "i",
+  );
+  const m = zoomPageHtml.match(re);
+  return m ? m[0] : null;
+}
+
 // From a photo page's HTML body, find all gallery image URLs that match a
 // given photoId, and pick the largest. Returns the chosen URL or null.
+// Used as a fallback when the zoom=8 page doesn't surface an empty-size URL.
 export function pickFullSizeForPhoto(photoPageHtml, photoId) {
   const re = new RegExp(
     `https?:\\/\\/data\\d+\\.chch\\.ru\\/albums\\/gallery\\/\\d+-[a-z0-9]+-${photoId}-[^"'\\s<>]+\\.(?:jpg|jpeg|png|gif|webp)`,
@@ -67,4 +85,15 @@ export function sanitizeFolderName(name) {
 export function originalFilenameFromUrl(url) {
   const path = new URL(url).pathname;
   return path.substring(path.lastIndexOf("/") + 1);
+}
+
+// Pulls the posted date out of a `?subpanel=main_body` AJAX response.
+// The date appears in the sidebar as:
+//   Размещено: <a href="/?p=calendar&day=2018-01-27&uploaded=1">27.01.2018</a>
+// We match the `day=YYYY-MM-DD` parameter — already in the desired format,
+// and ASCII-safe (works regardless of how the surrounding cp1251 page is
+// decoded). Returns the YYYY-MM-DD string, or null if not found.
+export function extractPostedDate(mainBodyResponse) {
+  const m = mainBodyResponse.match(/[?&]day=(\d{4}-\d{2}-\d{2})\b/);
+  return m ? m[1] : null;
 }

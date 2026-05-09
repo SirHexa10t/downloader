@@ -6,6 +6,8 @@ import {
   parseGalleryUrl,
   sizeRank,
   pickFullSizeForPhoto,
+  extractOriginalUrl,
+  extractPostedDate,
   sanitizeFolderName,
   originalFilenameFromUrl,
 } from "../urls.js";
@@ -35,6 +37,16 @@ test("parseGalleryUrl handles m{W}x{H} and src size variants", () => {
     parseGalleryUrl("https://data31.chch.ru/albums/gallery/372752-1c09a-105637575-src-ub8995.jpg").size,
     "src",
   );
+});
+
+test("parseGalleryUrl handles the empty-size 'Original' variant (double-dash)", () => {
+  // The zoom=8 page exposes original-resolution URLs with no size segment.
+  const parsed = parseGalleryUrl(
+    "https://data31.chch.ru/albums/gallery/372752-cbcdb-105637575--ub8995.jpg",
+  );
+  assert.equal(parsed.size, "");
+  assert.equal(parsed.photoId, "105637575");
+  assert.equal(parsed.trailingHash, "ub8995");
 });
 
 test("parseGalleryUrl returns null on non-gallery URLs", () => {
@@ -101,6 +113,36 @@ test("pickFullSizeForPhoto returns null when nothing matches", () => {
   assert.equal(pickFullSizeForPhoto("<html>nothing here</html>", "12345"), null);
 });
 
+test("extractOriginalUrl finds the empty-size variant on a real zoom=8 page", () => {
+  const html = fixture("zoom_page_sample.html");
+  const url = extractOriginalUrl(html, "105637575");
+  assert.match(url, /-105637575--/);
+  assert.ok(url.endsWith(".jpg"));
+});
+
+test("extractOriginalUrl returns null when the photoId isn't on the page", () => {
+  const html = fixture("zoom_page_sample.html");
+  assert.equal(extractOriginalUrl(html, "9999999999"), null);
+});
+
+test("extractOriginalUrl ignores other size variants", () => {
+  // No double-dash -> not the original.
+  const html = `
+    https://data1.chch.ru/albums/gallery/372752-aaa-555-m750x740-u11111.jpg
+    https://data1.chch.ru/albums/gallery/372752-bbb-555-200-u22222.jpg
+  `;
+  assert.equal(extractOriginalUrl(html, "555"), null);
+});
+
+test("extractOriginalUrl scopes to the right photoId on a multi-photo page", () => {
+  const html = `
+    https://data1.chch.ru/albums/gallery/372752-aaaaa-111--u11111.jpg
+    https://data1.chch.ru/albums/gallery/372752-bbbbb-222--u22222.jpg
+  `;
+  assert.match(extractOriginalUrl(html, "111"), /-111--/);
+  assert.match(extractOriginalUrl(html, "222"), /-222--/);
+});
+
 test("sanitizeFolderName: spaces become underscores", () => {
   assert.equal(sanitizeFolderName("Eva Rosenstad"), "Eva_Rosenstad");
 });
@@ -134,4 +176,28 @@ test("originalFilenameFromUrl: pulls last path segment", () => {
     originalFilenameFromUrl("https://data31.chch.ru/albums/gallery/372752-78385-105637575-m750x740-ub8995.jpg"),
     "372752-78385-105637575-m750x740-ub8995.jpg",
   );
+});
+
+test("extractPostedDate finds the date in a real main_body subpanel response", () => {
+  const json = readFileSync(
+    fileURLToPath(new URL("./fixtures/main_body_sample.json", import.meta.url)),
+    "latin1",
+  );
+  assert.equal(extractPostedDate(json), "2018-01-27");
+});
+
+test("extractPostedDate matches both ?day= and &day= forms", () => {
+  assert.equal(extractPostedDate('href="/?p=calendar&day=2020-12-31"'), "2020-12-31");
+  assert.equal(extractPostedDate('href="/calendar?day=2020-12-31&u=1"'), "2020-12-31");
+});
+
+test("extractPostedDate returns null when there's no day= param", () => {
+  assert.equal(extractPostedDate('<p>some unrelated content 2020-12-31</p>'), null);
+  assert.equal(extractPostedDate(""), null);
+});
+
+test("extractPostedDate ignores partial / malformed date params", () => {
+  assert.equal(extractPostedDate("?day=2020-1-31"), null);
+  assert.equal(extractPostedDate("?day=2020-12-3"), null);
+  assert.equal(extractPostedDate("?dayofweek=2020-12-31"), null);
 });
