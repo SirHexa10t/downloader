@@ -1,0 +1,10 @@
+{
+  "name": "pinterest-board-downloader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome MV3 extension that downloads all full-size images from a Pinterest board in one click.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

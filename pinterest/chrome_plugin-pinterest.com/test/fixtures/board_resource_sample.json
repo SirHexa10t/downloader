@@ -1,0 +1,17 @@
+{
+  "resource_response": {
+    "status": "success",
+    "code": 0,
+    "message": "ok",
+    "data": {
+      "type": "board",
+      "id": "550775982164965310",
+      "name": "Clara & Eva vill ha",
+      "slug": "clara-eva-vill-ha",
+      "url": "/enfald/clara-eva-vill-ha/",
+      "section_count": 2,
+      "pin_count": 137,
+      "privacy": "public"
+    }
+  }
+}

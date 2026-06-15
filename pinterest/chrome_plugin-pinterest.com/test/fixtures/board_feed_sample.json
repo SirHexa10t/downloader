@@ -1,0 +1,79 @@
+{
+  "resource_response": {
+    "status": "success",
+    "code": 0,
+    "bookmark": "Y2JNCXV0WGc6cGdSaW5nZQ==",
+    "data": [
+      {
+        "type": "pin",
+        "id": "1111111111111111",
+        "grid_title": "A cross-stitch pattern",
+        "images": {
+          "170x": {
+            "url": "https://i.pinimg.com/170x/ab/cd/ef/abcdef0123456789abcdef0123456789.jpg",
+            "width": 170,
+            "height": 226
+          },
+          "136x136": {
+            "url": "https://i.pinimg.com/136x136/ab/cd/ef/abcdef0123456789abcdef0123456789.jpg",
+            "width": 136,
+            "height": 136
+          },
+          "236x": {
+            "url": "https://i.pinimg.com/236x/ab/cd/ef/abcdef0123456789abcdef0123456789.jpg",
+            "width": 236,
+            "height": 314
+          },
+          "474x": {
+            "url": "https://i.pinimg.com/474x/ab/cd/ef/abcdef0123456789abcdef0123456789.jpg",
+            "width": 474,
+            "height": 632
+          },
+          "736x": {
+            "url": "https://i.pinimg.com/736x/ab/cd/ef/abcdef0123456789abcdef0123456789.jpg",
+            "width": 736,
+            "height": 981
+          },
+          "orig": {
+            "url": "https://i.pinimg.com/originals/ab/cd/ef/abcdef0123456789abcdef0123456789.png",
+            "width": 1500,
+            "height": 2000
+          }
+        }
+      },
+      {
+        "type": "pin",
+        "id": "2222222222222222",
+        "grid_title": "No original exposed, only previews",
+        "images": {
+          "170x": {
+            "url": "https://i.pinimg.com/170x/11/22/33/112233445566778899aabbccddeeff00.jpg",
+            "width": 170,
+            "height": 226
+          },
+          "236x": {
+            "url": "https://i.pinimg.com/236x/11/22/33/112233445566778899aabbccddeeff00.jpg",
+            "width": 236,
+            "height": 314
+          },
+          "474x": {
+            "url": "https://i.pinimg.com/474x/11/22/33/112233445566778899aabbccddeeff00.jpg",
+            "width": 474,
+            "height": 632
+          },
+          "736x": {
+            "url": "https://i.pinimg.com/736x/11/22/33/112233445566778899aabbccddeeff00.jpg",
+            "width": 736,
+            "height": 981
+          }
+        }
+      },
+      {
+        "type": "story",
+        "id": "3333333333333333",
+        "grid_title": "Idea/story pin with no single still image",
+        "images": {}
+      }
+    ]
+  }
+}
