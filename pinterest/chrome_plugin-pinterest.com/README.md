@@ -1,13 +1,20 @@
-# Pinterest board downloader
+# Pinterest image downloader
 
 A one-click Chrome extension that downloads every full-size image from a
-Pinterest board.
+Pinterest **board**, **search results** page, or **pin**.
 
-Open a board page → click the toolbar icon → all images (including any in the
-board's sections) save to `Downloads/Pinterest/<board-name>/`. Each file is
-named by its image content hash (`<hash>.jpg`), so the name is the same every
-run — re-click to **resume** a partial download and it only fetches what's
-missing, never creating duplicates. That's it.
+Open one of those pages → click the toolbar icon → all images save to a
+deterministic subfolder of `Downloads/Pinterest/`:
+
+| Page | Example | Saves to |
+|---|---|---|
+| Board | `pinterest.com/<user>/<board>/` | `Pinterest/<board-name>/` |
+| Search | `pinterest.com/search/pins/?q=<query>` | `Pinterest/search_<query>/` |
+| Pin | `pinterest.com/pin/<id>/` | `Pinterest/pin_<id>/` |
+
+Each file is named by its image content hash (`<hash>.jpg`), so the name is the
+same every run — re-click to **resume** a partial download and it only fetches
+what's missing, never creating duplicates. That's it.
 
 ---
 
@@ -42,25 +49,25 @@ missing, never creating duplicates. That's it.
 
 ### Use it
 
-1. Open any Pinterest **board** page, e.g.
-   `https://www.pinterest.com/<user>/<board>/`. The toolbar icon is in color
-   on Pinterest pages.
+1. Open a Pinterest **board**, **search results**, or **pin** page (see the
+   table above). The toolbar icon is in color on Pinterest pages.
 2. Click the icon. The badge shows progress (e.g. `42/137`).
 3. When done you'll see a notification and a ✓ on the icon.
-4. Find your images in `Downloads/Pinterest/<board-name>/`.
+4. Find your images in the matching `Downloads/Pinterest/…` subfolder.
 
 For **private** boards, make sure you're logged into Pinterest in the same
 browser — the extension reuses your session, so it can only see boards your
-account can see.
+account can see. Search results are capped at ~1000 images (search is
+effectively endless); the notification says so if the cap is hit.
 
 ### Re-running / resuming
 
-Click the icon again on the same board. Because each image's filename is fixed
+Click the icon again on the same page. Because each image's filename is fixed
 (its content hash), the extension can tell what it already has: for every image
 it checks Chrome's download history for a completed download to that exact path
 that's still on disk, and skips it. Only missing or interrupted images are
-fetched. So a re-click resumes an interrupted run, and picks up pins added to
-the board since last time — without duplicates or renaming.
+fetched. So a re-click resumes an interrupted run, and picks up pins added
+since last time — without duplicates or renaming.
 
 The one thing it can't see is files you have on disk that *aren't* in Chrome's
 download history (e.g. you cleared history, or copied the folder from another
@@ -83,10 +90,10 @@ them elsewhere, either change Chrome's download location first
 afterward. Filenames are stable (content-hash), so moving/syncing the folder is
 safe.
 
-**"Not a board page" notification.**
-The icon works on board URLs (`pinterest.com/<user>/<board>/`), not on the
-home feed, a profile (`pinterest.com/<user>/`), a single pin
-(`pinterest.com/pin/<id>/`), or search. Open the board itself.
+**"Not a downloadable page" notification.**
+The icon works on board, search-results, and pin URLs (see the table at the
+top), not on the home feed or a bare profile (`pinterest.com/<user>/`). Open
+one of the supported pages.
 
 **Icon is greyed out.**
 It only activates on Pinterest pages — `pinterest.com` and its country
@@ -148,23 +155,28 @@ npm test        # or: node --test
 
 ### How the download works
 
-The board is crawled through Pinterest's private **resource API** (the same
-JSON endpoints the website itself calls), which yields true originals with
-the correct file extension and full pagination — no scrolling required:
+Images come from Pinterest's private **resource API** (the same JSON endpoints
+the website itself calls), which yields true originals with the correct file
+extension and full pagination — no scrolling required:
 
-1. **Click handler** (`background.js`) parses the tab URL into
-   `{username, slug, boardPath}` (`parseBoardUrl`). Non-board URLs are
-   rejected.
-2. **`BoardResource`** → the board's `id` and display name.
-3. **`BoardFeedResource`** → all pins, paged via `bookmark` cursors until the
-   `-end-` sentinel. `filter_section_pins: false` means the feed spans the
-   whole board — pins inside sections included — so one endpoint covers
-   everything (no separate, drift-prone per-section crawl). The feed is
-   crawled **twice and unioned**: once authenticated (the only view that sees a
-   *private* board) and once anonymously (the full *public* feed — Pinterest's
+1. **Click handler** (`background.js`) calls `parsePinterestUrl(tab.url)`,
+   which returns a target descriptor with `kind: "board" | "search" | "pin"`
+   (or null for unsupported pages). `collectViaApi` dispatches on `kind`;
+   each collector returns `{ folder, entries, capped }`.
+2. **Board** (`collectBoard`): `BoardResource` → the board's `id` and name,
+   then `BoardFeedResource` paged via `bookmark` cursors until the `-end-`
+   sentinel. `filter_section_pins: false` makes the feed span the whole board
+   (sections included) — no separate, drift-prone per-section crawl. The feed
+   is crawled **twice and unioned**: authenticated (the only view that sees a
+   *private* board) and anonymous (the full *public* feed — Pinterest's
    signed-in view sometimes omits a few of the owner's own public pins). For a
    private board the anonymous pass returns nothing and the authenticated set
    stands; the union only ever adds coverage.
+   - **Search** (`collectSearch`): `BaseSearchResource` (scope `pins`), paged
+     like the feed but bounded by `SEARCH_MAX_PAGES` (search is endless); pins
+     are nested under `data.results`. The summary notes if the cap was hit.
+   - **Pin** (`collectPin`): `PinResource` → that one pin. (No DOM fallback —
+     scrolling a pin page would grab unrelated "more ideas".)
 4. For each pin, **`pickPinImage`** takes `images.orig` if present, else the
    largest preview size (the `NNNx` keys; square crops like `136x136` are
    ignored). Previews are upgraded to `/originals/` by probing candidate
@@ -172,8 +184,9 @@ the correct file extension and full pagination — no scrolling required:
 5. **De-dupe by content hash** — the `<hash>` in the `i.pinimg.com` path is
    the same image across all sizes, so repins that point at the same file are
    downloaded once.
-6. **Filename:** `Pinterest/<board>/<hash>.<ext>` — deterministic, derived
+6. **Filename:** `Pinterest/<folder>/<hash>.<ext>` — deterministic, derived
    from the image's content hash, so the destination for any image is fixed.
+   `<folder>` is the board name, `search_<query>`, or `pin_<id>` (`folderName`).
 7. **Skip if already present:** `chrome.downloads.search` for a completed
    download to that exact path that still exists on disk (`alreadyHave`).
    Downloads use `conflictAction: "overwrite"` so a forced re-download never

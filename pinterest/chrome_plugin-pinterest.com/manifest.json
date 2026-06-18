@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Pinterest board downloader",
-  "version": "1.0.0",
-  "description": "Download every full-size image from a Pinterest board in one click.",
+  "name": "Pinterest image downloader",
+  "version": "1.1.0",
+  "description": "Download every full-size image from a Pinterest board, search, or pin in one click.",
   "permissions": ["downloads", "scripting", "declarativeContent", "notifications"],
   "host_permissions": [
     "*://*.pinterest.com/*",
@@ -54,7 +54,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "Download all images in this board",
+    "default_title": "Download all images on this Pinterest page",
     "default_icon": {
       "16": "icons/icon-16.png",
       "48": "icons/icon-48.png",

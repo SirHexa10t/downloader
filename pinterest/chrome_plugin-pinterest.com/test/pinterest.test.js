@@ -3,19 +3,24 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
-  parseBoardUrl,
+  parsePinterestUrl,
   buildDataParam,
   buildResourceUrl,
   boardResourceOptions,
   boardFeedOptions,
+  searchOptions,
+  pinOptions,
   boardFromResponse,
   pinsFromResponse,
+  searchPinsFromResponse,
+  pinFromResponse,
   nextBookmark,
   pickPinImage,
   toOriginalsCandidates,
   imageHashFromUrl,
   originalFilenameFromUrl,
   sanitizeName,
+  folderName,
 } from "../pinterest.js";
 
 const fixture = (name) =>
@@ -23,70 +28,128 @@ const fixture = (name) =>
     readFileSync(fileURLToPath(new URL(`./fixtures/${name}`, import.meta.url))),
   );
 
-// ---------------------------------------------------------------- parseBoardUrl
-test("parseBoardUrl: parses a country-subdomain board URL", () => {
-  const b = parseBoardUrl("https://se.pinterest.com/enfald/clara-eva-vill-ha/");
-  assert.deepEqual(b, {
-    origin: "https://se.pinterest.com",
-    username: "enfald",
-    slug: "clara-eva-vill-ha",
-    boardPath: "/enfald/clara-eva-vill-ha/",
-    sectionSlug: null,
-  });
+// ------------------------------------------------------------ parsePinterestUrl
+test("parsePinterestUrl: board on a country subdomain", () => {
+  assert.deepEqual(
+    parsePinterestUrl("https://se.pinterest.com/enfald/clara-eva-vill-ha/"),
+    {
+      kind: "board",
+      origin: "https://se.pinterest.com",
+      username: "enfald",
+      slug: "clara-eva-vill-ha",
+      boardPath: "/enfald/clara-eva-vill-ha/",
+      sectionSlug: null,
+    },
+  );
 });
 
-test("parseBoardUrl: www and apex hosts, trailing slash optional, query ignored", () => {
+test("parsePinterestUrl: board www/apex, trailing slash optional, query ignored", () => {
   assert.equal(
-    parseBoardUrl("https://www.pinterest.com/enfald/clara-eva-vill-ha").slug,
+    parsePinterestUrl("https://www.pinterest.com/enfald/clara-eva-vill-ha").slug,
     "clara-eva-vill-ha",
   );
   assert.equal(
-    parseBoardUrl("https://pinterest.com/enfald/clara-eva-vill-ha/?invite=1")
+    parsePinterestUrl("https://pinterest.com/enfald/clara-eva-vill-ha/?invite=1")
       .username,
     "enfald",
   );
 });
 
-test("parseBoardUrl: a third path segment is a section -> resolves to parent board", () => {
-  const b = parseBoardUrl(
+test("parsePinterestUrl: a board section resolves to the parent board", () => {
+  const b = parsePinterestUrl(
     "https://www.pinterest.com/enfald/clara-eva-vill-ha/klara/",
   );
-  assert.equal(b.slug, "clara-eva-vill-ha");
+  assert.equal(b.kind, "board");
   assert.equal(b.boardPath, "/enfald/clara-eva-vill-ha/");
   assert.equal(b.sectionSlug, "klara");
 });
 
-test("parseBoardUrl: rejects bare profiles, pin pages, and app routes", () => {
-  assert.equal(parseBoardUrl("https://www.pinterest.com/enfald/"), null); // profile
-  assert.equal(parseBoardUrl("https://www.pinterest.com/pin/12345/"), null); // pin
-  assert.equal(parseBoardUrl("https://www.pinterest.com/search/pins/?q=x"), null);
-  assert.equal(parseBoardUrl("https://www.pinterest.com/"), null); // home
+test("parsePinterestUrl: search pins page", () => {
+  assert.deepEqual(
+    parsePinterestUrl(
+      "https://www.pinterest.com/search/pins/?q=Eva%20Rosenstand&rs=typed",
+    ),
+    {
+      kind: "search",
+      origin: "https://www.pinterest.com",
+      query: "Eva Rosenstand",
+      sourceUrl: "/search/pins/?q=Eva%20Rosenstand",
+    },
+  );
 });
 
-test("parseBoardUrl: rejects profile tabs (_saved / _created)", () => {
-  assert.equal(parseBoardUrl("https://www.pinterest.com/enfald/_saved/"), null);
-  assert.equal(parseBoardUrl("https://www.pinterest.com/enfald/_created/"), null);
+test("parsePinterestUrl: search needs a query; only the pins scope", () => {
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/search/pins/?q="), null);
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/search/pins/"), null);
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/search/boards/?q=x"), null);
+  // bare /search/?q= (no scope segment) defaults to pins
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/search/?q=cats").kind, "search");
 });
 
-test("parseBoardUrl: accepts country ccTLDs and country subdomains", () => {
+test("parsePinterestUrl: single pin page (utm junk ignored)", () => {
+  assert.deepEqual(
+    parsePinterestUrl(
+      "https://www.pinterest.com/pin/14777505018982287/?utm_campaign=x&e_t=y",
+    ),
+    {
+      kind: "pin",
+      origin: "https://www.pinterest.com",
+      pinId: "14777505018982287",
+      sourceUrl: "/pin/14777505018982287/",
+    },
+  );
+});
+
+test("parsePinterestUrl: non-numeric / missing pin id rejected", () => {
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/pin/not-a-number/"), null);
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/pin/"), null);
+});
+
+test("parsePinterestUrl: rejects profiles, home, and profile tabs", () => {
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/enfald/"), null);
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/"), null);
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/enfald/_saved/"), null);
+  assert.equal(parsePinterestUrl("https://www.pinterest.com/enfald/_created/"), null);
+});
+
+test("parsePinterestUrl: boards on ccTLDs and country subdomains", () => {
   for (const host of [
     "www.pinterest.co.uk",
     "pinterest.com.au",
     "pinterest.se",
     "pinterest.fr",
-    "uk.pinterest.com", // country subdomain
+    "uk.pinterest.com",
   ]) {
-    const b = parseBoardUrl(`https://${host}/enfald/clara-eva-vill-ha/`);
-    assert.equal(b?.slug, "clara-eva-vill-ha", `expected board for ${host}`);
+    const b = parsePinterestUrl(`https://${host}/enfald/clara-eva-vill-ha/`);
+    assert.equal(b?.kind, "board", `expected board for ${host}`);
     assert.equal(b.origin, `https://${host}`);
   }
 });
 
-test("parseBoardUrl: rejects non-Pinterest hosts (incl. lookalikes)", () => {
-  assert.equal(parseBoardUrl("https://example.com/enfald/board/"), null);
-  assert.equal(parseBoardUrl("https://notpinterest.com/enfald/board/"), null);
-  assert.equal(parseBoardUrl("https://pinterest.com.evil.com/a/b/"), null);
-  assert.equal(parseBoardUrl("not a url"), null);
+test("parsePinterestUrl: rejects non-Pinterest hosts (incl. lookalikes)", () => {
+  assert.equal(parsePinterestUrl("https://example.com/enfald/board/"), null);
+  assert.equal(parsePinterestUrl("https://notpinterest.com/enfald/board/"), null);
+  assert.equal(parsePinterestUrl("https://pinterest.com.evil.com/a/b/"), null);
+  assert.equal(parsePinterestUrl("not a url"), null);
+});
+
+test("folderName: deterministic and distinct per kind", () => {
+  assert.equal(
+    folderName({ kind: "board", slug: "clara-eva-vill-ha" }, "Clara Eva vill ha"),
+    "Pinterest/Clara_Eva_vill_ha",
+  );
+  assert.equal(
+    folderName({ kind: "board", slug: "clara-eva-vill-ha" }),
+    "Pinterest/clara-eva-vill-ha", // no API name -> slug
+  );
+  assert.equal(
+    folderName({ kind: "search", query: "Eva Rosenstand" }),
+    "Pinterest/search_Eva_Rosenstand",
+  );
+  assert.equal(
+    folderName({ kind: "pin", pinId: "14777505018982287" }),
+    "Pinterest/pin_14777505018982287",
+  );
 });
 
 // ------------------------------------------------------- resource URL building
@@ -142,6 +205,17 @@ test("boardResourceOptions carries the right keys", () => {
   });
 });
 
+test("searchOptions: scope=pins, bookmarks only when given", () => {
+  assert.equal(searchOptions("cats").scope, "pins");
+  assert.equal(searchOptions("cats").query, "cats");
+  assert.equal(searchOptions("cats").bookmarks, undefined);
+  assert.deepEqual(searchOptions("cats", "C").bookmarks, ["C"]);
+});
+
+test("pinOptions: id + detailed field set", () => {
+  assert.deepEqual(pinOptions("123"), { id: "123", field_set_key: "detailed" });
+});
+
 // ------------------------------------------------------------ response parsing
 test("boardFromResponse: pulls the board object from BoardResource", () => {
   const board = boardFromResponse(fixture("board_resource_sample.json"));
@@ -159,6 +233,21 @@ test("pinsFromResponse: returns the pin array, or [] when absent", () => {
   assert.equal(pins.length, 3);
   assert.deepEqual(pinsFromResponse({}), []);
   assert.deepEqual(pinsFromResponse({ resource_response: { data: {} } }), []);
+});
+
+test("searchPinsFromResponse: reads the nested data.results array", () => {
+  assert.equal(
+    searchPinsFromResponse({ resource_response: { data: { results: [{ id: 1 }, { id: 2 }] } } }).length,
+    2,
+  );
+  assert.deepEqual(searchPinsFromResponse({ resource_response: { data: {} } }), []);
+  assert.deepEqual(searchPinsFromResponse({}), []);
+});
+
+test("pinFromResponse: reads the single pin object, null otherwise", () => {
+  assert.equal(pinFromResponse({ resource_response: { data: { id: "x" } } }).id, "x");
+  assert.equal(pinFromResponse({ resource_response: { data: [] } }), null);
+  assert.equal(pinFromResponse({}), null);
 });
 
 test("nextBookmark: reads resource_response.bookmark", () => {

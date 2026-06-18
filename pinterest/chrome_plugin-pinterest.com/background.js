@@ -1,21 +1,26 @@
 import {
-  parseBoardUrl,
+  parsePinterestUrl,
   buildResourceUrl,
   boardResourceOptions,
   boardFeedOptions,
+  searchOptions,
+  pinOptions,
   boardFromResponse,
   pinsFromResponse,
+  searchPinsFromResponse,
+  pinFromResponse,
   nextBookmark,
   pickPinImage,
   toOriginalsCandidates,
   imageHashFromUrl,
   originalFilenameFromUrl,
-  sanitizeName,
+  folderName,
 } from "./pinterest.js";
 import { harvestPinsByScrolling } from "./content-scroll.js";
 
 const CONCURRENCY = 5; // parallel downloads
-const MAX_PAGES = 600; // pagination safety cap (~15k pins) — prevents a loop
+const MAX_PAGES = 600; // board pagination safety cap (~15k pins) — prevents a loop
+const SEARCH_MAX_PAGES = 40; // search is effectively endless — bound it (~800 results)
 const DOWNLOAD_ATTEMPTS = 3; // retries per image for transient CDN/network blips
 const PIN_RED = "#e60023";
 
@@ -75,47 +80,48 @@ chrome.action.onClicked.addListener(async (tab) => {
 });
 
 async function runDownload(tab) {
-  const board = parseBoardUrl(tab.url);
-  if (!board) {
+  const target = parsePinterestUrl(tab.url);
+  if (!target) {
     notify(
-      "Not a board page",
-      "Open a Pinterest board (pinterest.com/<user>/<board>/) and try again.",
+      "Not a downloadable page",
+      "Open a Pinterest board, a search results page, or a pin.",
     );
     return;
   }
 
   setBadge("…", PIN_RED);
 
-  // ---- Collect pins. Primary path: the private resource API (true
-  // originals, full pagination, sections). Fallback: scroll the DOM. --------
-  let boardName = board.slug;
+  // Collect images. Primary path: the resource API. Fallback (board/search
+  // only): scroll the DOM. A single pin doesn't fall back — its API call is
+  // reliable, and scrolling a pin page would harvest unrelated "more ideas".
+  let folder = folderName(target);
   let entries = [];
+  let capped = false;
   try {
-    const api = await collectViaApi(board);
-    boardName = api.boardName || boardName;
+    const api = await collectViaApi(target);
+    folder = api.folder;
     entries = api.entries;
+    capped = api.capped;
   } catch (err) {
     console.warn("[pinterest-downloader] API path failed:", err);
   }
 
-  if (entries.length === 0) {
-    console.warn("[pinterest-downloader] API yielded no pins; scrolling DOM.");
-    notify("Scanning board", "Reading pins by scrolling the page…");
+  if (entries.length === 0 && target.kind !== "pin") {
+    console.warn("[pinterest-downloader] API yielded nothing; scrolling DOM.");
+    notify("Scanning page", "Reading pins by scrolling the page…");
     entries = await collectViaScroll(tab);
   }
 
   if (entries.length === 0) {
-    notify("No pins found", "Couldn't find any images on this board.");
+    notify("No images found", "Couldn't find any images on this page.");
     setBadge("0", "#d1242f");
     return;
   }
 
-  // One tidy parent folder, one subfolder per board. Files are named by the
-  // image's content hash (see downloadOne), so the destination for any given
-  // image is fixed — re-running only fetches what's missing.
-  const folder = `Pinterest/${sanitizeName(boardName)}`;
+  // Files are named by the image's content hash (see downloadOne), so the
+  // destination for any given image is fixed — re-running only fetches what's
+  // missing.
   const total = entries.length;
-
   let done = 0;
   let skipped = 0;
   let failed = 0;
@@ -138,15 +144,24 @@ async function runDownload(tab) {
   const summary =
     `Downloaded ${done}, skipped ${skipped}` +
     (failed > 0 ? `, failed ${failed}` : "") +
-    ` of ${total}.`;
+    ` of ${total}` +
+    (capped ? ` (stopped at the ~${SEARCH_MAX_PAGES * 25}-image search limit)` : "") +
+    ".";
   setBadge(failed > 0 ? "!" : "✓", failed > 0 ? "#d1242f" : "#1a7f37");
   notify(`Saved to Downloads/${folder}`, summary);
 }
 
 // --------------------------------------------------------------------------
-// Primary path: Pinterest's private "resource" JSON API.
+// Primary path: Pinterest's private "resource" JSON API. Each collector
+// returns { folder, entries, capped }.
 // --------------------------------------------------------------------------
-async function collectViaApi(board) {
+function collectViaApi(target) {
+  if (target.kind === "search") return collectSearch(target);
+  if (target.kind === "pin") return collectPin(target);
+  return collectBoard(target);
+}
+
+async function collectBoard(board) {
   const { origin, username, slug, boardPath } = board;
 
   // 1. Resolve the board id + display name (authenticated — required to see a
@@ -195,16 +210,57 @@ async function collectViaApi(board) {
   };
   const [authed, anon] = await Promise.all([feedPass(true), feedPass(false)]);
 
-  return { boardName, entries: pinsToEntries([...authed, ...anon]) };
+  return {
+    folder: folderName(board, boardName),
+    entries: pinsToEntries([...authed, ...anon]),
+    capped: false,
+  };
 }
 
-// Drive a paginated resource endpoint until its bookmark is exhausted,
-// handing every pin to `sink`. `getPage(bookmark)` returns the parsed JSON.
-// A page error gets one retry, then pagination stops but KEEPS what was
-// already collected — one flaky request shouldn't discard a 40-page crawl.
-async function pageThrough(getPage, sink) {
+// Search results (BaseSearchResource). Single authenticated pass — these match
+// what the user sees on the page — bounded by SEARCH_MAX_PAGES since search is
+// effectively endless. Pins are nested under data.results, not data.
+async function collectSearch(target) {
+  const { origin, query, sourceUrl } = target;
+  const pins = [];
+  const capped = await pageThrough(
+    (bm) =>
+      fetchResource(
+        buildResourceUrl(origin, "BaseSearchResource", searchOptions(query, bm), sourceUrl),
+        true,
+      ),
+    (pin) => pins.push(pin),
+    { pinsFrom: searchPinsFromResponse, maxPages: SEARCH_MAX_PAGES },
+  );
+  return { folder: folderName(target), entries: pinsToEntries(pins), capped };
+}
+
+// A single pin (PinResource) — just that one image.
+async function collectPin(target) {
+  const { origin, pinId, sourceUrl } = target;
+  const pin = pinFromResponse(
+    await fetchResource(
+      buildResourceUrl(origin, "PinResource", pinOptions(pinId), sourceUrl),
+    ),
+  );
+  return {
+    folder: folderName(target),
+    entries: pin ? pinsToEntries([pin]) : [],
+    capped: false,
+  };
+}
+
+// Drive a paginated resource endpoint until its bookmark is exhausted, handing
+// every pin to `sink`. Returns true if it stopped at the page cap (more results
+// remained), false if it ran the feed dry or bailed on errors. A page error
+// gets one retry, then pagination stops but KEEPS what was already collected —
+// one flaky request shouldn't discard a long crawl. opts.pinsFrom selects the
+// response shape (board feed vs search results); opts.maxPages overrides the cap.
+async function pageThrough(getPage, sink, opts = {}) {
+  const pinsFrom = opts.pinsFrom || pinsFromResponse;
+  const maxPages = opts.maxPages || MAX_PAGES;
   let bookmark = null;
-  for (let page = 0; page < MAX_PAGES; page++) {
+  for (let page = 0; page < maxPages; page++) {
     let json;
     try {
       json = await getPage(bookmark);
@@ -217,14 +273,15 @@ async function pageThrough(getPage, sink) {
           "[pinterest-downloader] page failed again; stopping pagination:",
           err2,
         );
-        return;
+        return false;
       }
     }
-    for (const pin of pinsFromResponse(json)) sink(pin);
+    for (const pin of pinsFrom(json)) sink(pin);
     bookmark = nextBookmark(json);
-    if (!bookmark) return;
+    if (!bookmark) return false;
   }
-  console.warn(`[pinterest-downloader] hit ${MAX_PAGES}-page cap; stopping.`);
+  console.warn(`[pinterest-downloader] hit ${maxPages}-page cap; stopping.`);
+  return true;
 }
 
 // Pick each pin's best image and de-dupe by content hash — repins (and any

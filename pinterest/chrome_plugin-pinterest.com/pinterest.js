@@ -15,17 +15,16 @@ const RESERVED_FIRST_SEGMENT = new Set([
   "homefeed", "email", "your_account_settings",
 ]);
 
-// Parse a Pinterest board page URL into its parts. Returns null for anything
-// that isn't a board (profiles, pin pages, search, non-Pinterest hosts).
+// Parse any downloadable Pinterest page URL into a target descriptor, or null.
+// Three kinds are recognized; the `kind` field tells the caller how to crawl:
 //
-//   https://se.pinterest.com/enfald/clara-eva-vill-ha/
-//     -> { origin, username, slug, boardPath, sectionSlug: null }
+//   board:  /<user>/<slug>/        -> { kind, origin, username, slug, boardPath, sectionSlug }
+//   search: /search/pins/?q=...    -> { kind, origin, query, sourceUrl }
+//   pin:    /pin/<id>/             -> { kind, origin, pinId, sourceUrl }
 //
-// A board needs exactly a username + slug. A third segment is a board section
-// (/{user}/{board}/{section}/); we still resolve it to the parent board (the
-// whole board is downloaded, sections included) but expose sectionSlug so the
-// caller could special-case it later.
-export function parseBoardUrl(rawUrl) {
+// Returns null for profiles, the home feed, unsupported search scopes, and
+// non-Pinterest hosts.
+export function parsePinterestUrl(rawUrl) {
   let u;
   try {
     u = new URL(rawUrl);
@@ -36,25 +35,51 @@ export function parseBoardUrl(rawUrl) {
   // and country ccTLDs (pinterest.co.uk, pinterest.com.au, pinterest.se). The
   // (^|\.) guard and trailing $ reject look-alikes like notpinterest.com and
   // pinterest.com.evil.com. The manifest's host_permissions are the actual
-  // security boundary — this just decides whether to attempt a board.
+  // security boundary — this just decides whether to attempt a download.
   if (!/(^|\.)pinterest\.[a-z]{2,3}(\.[a-z]{2})?$/i.test(u.hostname)) return null;
 
   const segs = u.pathname.split("/").filter(Boolean);
-  if (segs.length < 2) return null; // bare profile /{username}/ or homepage
 
-  const [username, slug, section] = segs;
-  if (RESERVED_FIRST_SEGMENT.has(username.toLowerCase())) return null;
-  // _saved / _created / _tools are profile tabs, never real boards.
-  if (slug.startsWith("_")) return null;
+  // A single pin: /pin/<numericId>/
+  if (segs[0] === "pin") {
+    const pinId = segs[1];
+    return /^\d+$/.test(pinId || "")
+      ? { kind: "pin", origin: u.origin, pinId, sourceUrl: `/pin/${pinId}/` }
+      : null;
+  }
 
-  return {
-    origin: u.origin,
-    username: decodeURIComponent(username),
-    slug: decodeURIComponent(slug),
-    // Path kept in its on-the-wire (encoded) form for the source_url param.
-    boardPath: `/${username}/${slug}/`,
-    sectionSlug: section ? decodeURIComponent(section) : null,
-  };
+  // A pin search: /search/pins/?q=... (we only fetch pin images, not the
+  // boards/users search scopes).
+  if (segs[0] === "search") {
+    if (segs[1] && segs[1] !== "pins") return null;
+    const query = (u.searchParams.get("q") || "").trim();
+    if (!query) return null;
+    return {
+      kind: "search",
+      origin: u.origin,
+      query,
+      sourceUrl: `/search/pins/?q=${encodeURIComponent(query)}`,
+    };
+  }
+
+  // A board: /<username>/<slug>/. A 3rd segment is a board section; we resolve
+  // it to the parent board (the whole board is downloaded) but expose
+  // sectionSlug. Reserved first segments and _saved/_created tabs aren't boards.
+  if (segs.length >= 2) {
+    const [username, slug, section] = segs;
+    if (RESERVED_FIRST_SEGMENT.has(username.toLowerCase())) return null;
+    if (slug.startsWith("_")) return null;
+    return {
+      kind: "board",
+      origin: u.origin,
+      username: decodeURIComponent(username),
+      slug: decodeURIComponent(slug),
+      // Path kept in its on-the-wire (encoded) form for the source_url param.
+      boardPath: `/${username}/${slug}/`,
+      sectionSlug: section ? decodeURIComponent(section) : null,
+    };
+  }
+  return null;
 }
 
 // Pinterest resource endpoints take a `data` query param that is
@@ -97,6 +122,18 @@ export function boardFeedOptions(boardId, boardPath, bookmark) {
   return options;
 }
 
+// Pin search (BaseSearchResource), scope=pins, paginated via bookmark.
+export function searchOptions(query, bookmark) {
+  const options = { query, scope: "pins", rs: "typed", redux_normalize_feed: true };
+  if (bookmark) options.bookmarks = [bookmark];
+  return options;
+}
+
+// A single pin (PinResource).
+export function pinOptions(pinId) {
+  return { id: pinId, field_set_key: "detailed" };
+}
+
 // ---- Response parsing (the JSON shapes Pinterest sends back) ---------------
 
 // The board object (id, name, section_count, pin_count) from BoardResource.
@@ -109,6 +146,18 @@ export function boardFromResponse(json) {
 export function pinsFromResponse(json) {
   const data = json?.resource_response?.data;
   return Array.isArray(data) ? data : [];
+}
+
+// Search responses nest the pins under data.results (not data directly).
+export function searchPinsFromResponse(json) {
+  const results = json?.resource_response?.data?.results;
+  return Array.isArray(results) ? results : [];
+}
+
+// PinResource returns the single pin object under data.
+export function pinFromResponse(json) {
+  const d = json?.resource_response?.data;
+  return d && typeof d === "object" && !Array.isArray(d) ? d : null;
 }
 
 // The pagination cursor for the NEXT page, or null when exhausted. Pinterest
@@ -198,4 +247,17 @@ export function sanitizeName(name) {
       .replace(/^[._]+|[._]+$/g, "")
       .slice(0, 80) || "board"
   );
+}
+
+// Deterministic download subfolder for a target. Same page -> same folder
+// every run (so resume works), and distinct across page kinds/inputs:
+//   board  -> Pinterest/<board name or slug>
+//   search -> Pinterest/search_<query>
+//   pin    -> Pinterest/pin_<id>
+// `boardName` (the API's display name) is preferred for boards when known.
+export function folderName(target, boardName) {
+  if (!target) return "Pinterest/download";
+  if (target.kind === "search") return `Pinterest/search_${sanitizeName(target.query)}`;
+  if (target.kind === "pin") return `Pinterest/pin_${target.pinId}`;
+  return `Pinterest/${sanitizeName(boardName ?? target.slug)}`;
 }
