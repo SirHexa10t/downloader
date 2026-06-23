@@ -10,9 +10,11 @@ import {
   boardFeedOptions,
   searchOptions,
   pinOptions,
+  relatedPinsOptions,
   boardFromResponse,
   pinsFromResponse,
   searchPinsFromResponse,
+  relatedPinsFromResponse,
   pinFromResponse,
   nextBookmark,
   pickPinImage,
@@ -21,6 +23,8 @@ import {
   originalFilenameFromUrl,
   sanitizeName,
   folderName,
+  progressPercent,
+  crawlBadgeText,
 } from "../pinterest.js";
 
 const fixture = (name) =>
@@ -144,11 +148,20 @@ test("folderName: deterministic and distinct per kind", () => {
   );
   assert.equal(
     folderName({ kind: "search", query: "Eva Rosenstand" }),
-    "Pinterest/search_Eva_Rosenstand",
+    "Pinterest/search_eva_rosenstand", // query is lower-cased (case-insensitive search)
   );
   assert.equal(
     folderName({ kind: "pin", pinId: "14777505018982287" }),
     "Pinterest/pin_14777505018982287",
+  );
+});
+
+test("folderName: differently-cased searches share ONE folder (resume works)", () => {
+  // The whole point of case-folding the query: "Eva Rosenstand" typed and
+  // "eva rosenstand" via autocomplete must not split into two download folders.
+  assert.equal(
+    folderName({ kind: "search", query: "Eva Rosenstand" }),
+    folderName({ kind: "search", query: "eva rosenstand" }),
   );
 });
 
@@ -216,6 +229,19 @@ test("pinOptions: id + detailed field set", () => {
   assert.deepEqual(pinOptions("123"), { id: "123", field_set_key: "detailed" });
 });
 
+test("relatedPinsOptions: pin_id + page_size, bookmarks only when given", () => {
+  assert.deepEqual(relatedPinsOptions("123"), { pin_id: "123", page_size: 25 });
+  assert.deepEqual(relatedPinsOptions("123", "C").bookmarks, ["C"]);
+  assert.equal(relatedPinsOptions("123").bookmarks, undefined);
+});
+
+test("relatedPinsOptions: MUST NOT send a field_set_key", () => {
+  // Sending one makes Pinterest return imageless pin stubs — the bug this
+  // whole resource call works around. Pin this so a future edit can't add it.
+  assert.equal("field_set_key" in relatedPinsOptions("123"), false);
+  assert.equal("field_set_key" in relatedPinsOptions("123", "C"), false);
+});
+
 // ------------------------------------------------------------ response parsing
 test("boardFromResponse: pulls the board object from BoardResource", () => {
   const board = boardFromResponse(fixture("board_resource_sample.json"));
@@ -242,6 +268,31 @@ test("searchPinsFromResponse: reads the nested data.results array", () => {
   );
   assert.deepEqual(searchPinsFromResponse({ resource_response: { data: {} } }), []);
   assert.deepEqual(searchPinsFromResponse({}), []);
+});
+
+test("relatedPinsFromResponse: keeps image-bearing pins, drops shelf modules", () => {
+  // The fixture mixes 2 real pins with 2 non-pin {type:"story"} shelf modules.
+  const pins = relatedPinsFromResponse(fixture("related_modules_sample.json"));
+  assert.equal(pins.length, 2);
+  assert.deepEqual(
+    pins.map((p) => p.id),
+    ["9000000000000001", "9000000000000002"],
+  );
+  // And the kept pins flow through the normal image picker (orig + preview).
+  assert.equal(pickPinImage(pins[0]).isOriginal, true);
+  assert.equal(pickPinImage(pins[1]).isOriginal, false);
+});
+
+test("relatedPinsFromResponse: [] when data is missing or not an array", () => {
+  assert.deepEqual(relatedPinsFromResponse({}), []);
+  assert.deepEqual(relatedPinsFromResponse({ resource_response: { data: {} } }), []);
+});
+
+test("nextBookmark: reads the related-feed cursor too", () => {
+  assert.equal(
+    nextBookmark(fixture("related_modules_sample.json")),
+    "UmVsYXRlZE5leHRQYWdl",
+  );
 });
 
 test("pinFromResponse: reads the single pin object, null otherwise", () => {
@@ -357,4 +408,43 @@ test("sanitizeName: empty falls back to 'board', length capped, unicode kept", (
   assert.equal(sanitizeName(null), "board");
   assert.equal(sanitizeName("Mönster fågel"), "Mönster_fågel");
   assert.equal(sanitizeName("x".repeat(200)).length, 80);
+});
+
+// -------------------------------------------------------------- badge text
+test("progressPercent: 0%, mid, and exactly 100% at completion", () => {
+  assert.equal(progressPercent(0, 137), "0%");
+  assert.equal(progressPercent(73, 100), "73%");
+  assert.equal(progressPercent(137, 137), "100%");
+});
+
+test("progressPercent: floored, never a premature 100%", () => {
+  // 997/1000 is 99.7% — must read "99%", not "100%". Reaching "100%" must mean
+  // every file is actually done.
+  assert.equal(progressPercent(997, 1000), "99%");
+  assert.equal(progressPercent(1, 3), "33%");
+});
+
+test("progressPercent: guards total=0 (no division by zero)", () => {
+  assert.equal(progressPercent(0, 0), "0%");
+});
+
+test("progressPercent: always fits the ~4-char badge", () => {
+  for (const [d, t] of [[0, 9999], [4567, 9999], [9999, 9999], [50, 137]]) {
+    assert.ok(progressPercent(d, t).length <= 4, `${d}/${t}`);
+  }
+});
+
+test("crawlBadgeText: raw count below 10k, abbreviated at/above", () => {
+  assert.equal(crawlBadgeText(0), "0");
+  assert.equal(crawlBadgeText(42), "42");
+  assert.equal(crawlBadgeText(1000), "1000");
+  assert.equal(crawlBadgeText(9999), "9999");
+  assert.equal(crawlBadgeText(10000), "10k");
+  assert.equal(crawlBadgeText(15000), "15k"); // board crawl can reach the 15k cap
+});
+
+test("crawlBadgeText: always fits the ~4-char badge", () => {
+  for (const n of [0, 9, 99, 999, 9999, 10000, 15000, 600000]) {
+    assert.ok(crawlBadgeText(n).length <= 4, `n=${n} -> ${crawlBadgeText(n)}`);
+  }
 });

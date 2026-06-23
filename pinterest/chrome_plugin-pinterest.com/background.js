@@ -5,9 +5,11 @@ import {
   boardFeedOptions,
   searchOptions,
   pinOptions,
+  relatedPinsOptions,
   boardFromResponse,
   pinsFromResponse,
   searchPinsFromResponse,
+  relatedPinsFromResponse,
   pinFromResponse,
   nextBookmark,
   pickPinImage,
@@ -15,14 +17,25 @@ import {
   imageHashFromUrl,
   originalFilenameFromUrl,
   folderName,
+  progressPercent,
+  crawlBadgeText,
 } from "./pinterest.js";
 import { harvestPinsByScrolling } from "./content-scroll.js";
 
 const CONCURRENCY = 5; // parallel downloads
 const MAX_PAGES = 600; // board pagination safety cap (~15k pins) — prevents a loop
-const SEARCH_MAX_PAGES = 40; // search is effectively endless — bound it (~800 results)
+const SEARCH_MAX_PAGES = 800; // search is effectively endless — bound it (~20000 results)
+// A pin's related feed normally self-terminates (its bookmark runs out — ~300
+// pins for a typical pin), so the crawl gets the WHOLE feed in one run. This is
+// only a backstop for the rare feed that keeps paginating, matching search's
+// ~20000 ceiling. It is deliberately NOT small: a small cap stops mid-feed, and
+// re-clicking can't resume past it (the crawl always restarts at page 0), so
+// the tail would be unreachable.
+const RELATED_MAX_PAGES = 800;
 const DOWNLOAD_ATTEMPTS = 3; // retries per image for transient CDN/network blips
+const NOTIFY_EVERY = 250; // emit a progress notification every N images handled
 const PIN_RED = "#e60023";
+const PROGRESS_ID = "pinterest-downloader-progress"; // reused so pings replace, not stack
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -91,81 +104,61 @@ async function runDownload(tab) {
 
   setBadge("…", PIN_RED);
 
-  // Collect images. Primary path: the resource API. Fallback (board/search
-  // only): scroll the DOM. A single pin doesn't fall back — its API call is
-  // reliable, and scrolling a pin page would harvest unrelated "more ideas".
-  let folder = folderName(target);
-  let entries = [];
+  // Stream images straight to downloads as the API is crawled: each page is
+  // saved as soon as it arrives, so downloads start on the first page and the
+  // progress already made survives an interrupted run (no "crawl everything,
+  // then download" wait). Files are named by content hash, so re-running only
+  // fetches what's missing. Board/search fall back to a DOM scroll if the API
+  // yields nothing; a pin page doesn't (its API calls — the pin plus its
+  // related feed — already cover it).
+  const run = newRun(folderName(target));
   let capped = false;
   try {
-    const api = await collectViaApi(target);
-    folder = api.folder;
-    entries = api.entries;
-    capped = api.capped;
+    capped = await collectAndDownload(run, target);
   } catch (err) {
     console.warn("[pinterest-downloader] API path failed:", err);
   }
 
-  if (entries.length === 0 && target.kind !== "pin") {
+  if (run.total === 0 && target.kind !== "pin") {
     console.warn("[pinterest-downloader] API yielded nothing; scrolling DOM.");
     notify("Scanning page", "Reading pins by scrolling the page…");
-    entries = await collectViaScroll(tab);
+    const scrolled = await collectViaScroll(tab);
+    await downloadEntries(run, scrolled, scrolled.length);
   }
 
-  if (entries.length === 0) {
+  if (run.total === 0) {
     notify("No images found", "Couldn't find any images on this page.");
     setBadge("0", "#d1242f");
     return;
   }
 
-  // Files are named by the image's content hash (see downloadOne), so the
-  // destination for any given image is fixed — re-running only fetches what's
-  // missing.
-  const total = entries.length;
-  let done = 0;
-  let skipped = 0;
-  let failed = 0;
-  setBadge(`0/${total}`, PIN_RED);
-
-  await runWithConcurrency(entries, CONCURRENCY, async (entry) => {
-    try {
-      const status = await downloadOne(entry, folder);
-      if (status === "skipped") skipped++;
-      else if (status === "ok") done++;
-      else failed++;
-    } catch (err) {
-      console.warn("[pinterest-downloader] failed", entry.imageUrl, err);
-      failed++;
-    } finally {
-      setBadge(`${done + skipped}/${total}`, PIN_RED);
-    }
-  });
-
   const summary =
-    `Downloaded ${done}, skipped ${skipped}` +
-    (failed > 0 ? `, failed ${failed}` : "") +
-    ` of ${total}` +
-    (capped ? ` (stopped at the ~${SEARCH_MAX_PAGES * 25}-image search limit)` : "") +
+    `Downloaded ${run.done}, skipped ${run.skipped}` +
+    (run.failed > 0 ? `, failed ${run.failed}` : "") +
+    ` of ${run.total}` +
+    (capped
+      ? ` (stopped at the ~${SEARCH_MAX_PAGES * 25}-image safety limit; results beyond it were skipped)`
+      : "") +
     ".";
-  setBadge(failed > 0 ? "!" : "✓", failed > 0 ? "#d1242f" : "#1a7f37");
-  notify(`Saved to Downloads/${folder}`, summary);
+  setBadge(run.failed > 0 ? "!" : "✓", run.failed > 0 ? "#d1242f" : "#1a7f37");
+  notify(`Saved to Downloads/${run.folder}`, summary, PROGRESS_ID);
 }
 
 // --------------------------------------------------------------------------
 // Primary path: Pinterest's private "resource" JSON API. Each collector
-// returns { folder, entries, capped }.
+// downloads into `run` as it crawls and returns whether it hit the page cap.
 // --------------------------------------------------------------------------
-function collectViaApi(target) {
-  if (target.kind === "search") return collectSearch(target);
-  if (target.kind === "pin") return collectPin(target);
-  return collectBoard(target);
+function collectAndDownload(run, target) {
+  if (target.kind === "search") return collectSearch(run, target);
+  if (target.kind === "pin") return collectPin(run, target);
+  return collectBoard(run, target);
 }
 
-async function collectBoard(board) {
+async function collectBoard(run, board) {
   const { origin, username, slug, boardPath } = board;
 
   // 1. Resolve the board id + display name (authenticated — required to see a
-  // private board at all).
+  // private board at all). The name fixes the destination folder.
   const boardObj = boardFromResponse(
     await fetchResource(
       buildResourceUrl(
@@ -178,7 +171,7 @@ async function collectBoard(board) {
   );
   const boardId = boardObj?.id;
   if (!boardId) throw new Error("BoardResource returned no board id");
-  const boardName = boardObj?.name ?? slug;
+  run.folder = folderName(board, boardObj?.name ?? slug);
 
   // 2. Crawl the whole feed TWICE and union the results:
   //   - authenticated (credentials:include): the only view that can see a
@@ -188,10 +181,11 @@ async function collectBoard(board) {
   // (observed here: 4 of 377 — not dead links, just signed-in-view filtering),
   // while the logged-out view returns them all; the anonymous pass recovers
   // those. For a private board the anonymous pass just returns nothing and the
-  // authenticated set stands. Union (concat → de-dupe by hash) can only add
-  // coverage, so it's safe either way. boardFeedOptions sets
-  // filter_section_pins:false, so each pass spans the whole board (sections
-  // included) without a separate, drift-prone per-section crawl.
+  // authenticated set stands. The union must be computed before downloading
+  // (we de-dupe across both passes), so a board crawls fully, THEN downloads —
+  // and because that gives a known total up front, the badge shows a percentage.
+  // boardFeedOptions sets filter_section_pins:false, so each pass spans the
+  // whole board (sections included) without a separate, drift-prone crawl.
   const feedPass = (authenticated) => {
     const out = [];
     return pageThrough(
@@ -205,61 +199,85 @@ async function collectBoard(board) {
           ),
           authenticated,
         ),
-      (pin) => out.push(pin),
+      // Only the authenticated pass drives the crawl badge — it's the
+      // representative full feed, and a single writer keeps the count clean
+      // (the two passes run concurrently and would otherwise fight over it).
+      (pins, found) => {
+        for (const pin of pins) out.push(pin);
+        if (authenticated) reportCrawlProgress(found);
+      },
     ).then(() => out);
   };
   const [authed, anon] = await Promise.all([feedPass(true), feedPass(false)]);
 
-  return {
-    folder: folderName(board, boardName),
-    entries: pinsToEntries([...authed, ...anon]),
-    capped: false,
-  };
+  const entries = pinsToEntries([...authed, ...anon], run.seen);
+  await downloadEntries(run, entries, entries.length);
+  return false; // the board feed self-terminates; MAX_PAGES is just a loop guard
 }
 
-// Search results (BaseSearchResource). Single authenticated pass — these match
-// what the user sees on the page — bounded by SEARCH_MAX_PAGES since search is
-// effectively endless. Pins are nested under data.results, not data.
-async function collectSearch(target) {
+// Search results (BaseSearchResource), streamed: each page is downloaded as it
+// arrives. Single authenticated pass (matches what the user sees), bounded by
+// SEARCH_MAX_PAGES since search is effectively endless. Pins are nested under
+// data.results, not data. The total isn't known until the feed ends, so the
+// badge shows a running count rather than a percentage.
+async function collectSearch(run, target) {
   const { origin, query, sourceUrl } = target;
-  const pins = [];
-  const capped = await pageThrough(
+  return pageThrough(
     (bm) =>
       fetchResource(
         buildResourceUrl(origin, "BaseSearchResource", searchOptions(query, bm), sourceUrl),
         true,
       ),
-    (pin) => pins.push(pin),
+    (pins) => downloadEntries(run, pinsToEntries(pins, run.seen), null),
     { pinsFrom: searchPinsFromResponse, maxPages: SEARCH_MAX_PAGES },
   );
-  return { folder: folderName(target), entries: pinsToEntries(pins), capped };
 }
 
-// A single pin (PinResource) — just that one image.
-async function collectPin(target) {
+// A pin page, streamed: the pin itself (PinResource) downloaded first, then its
+// "More like this" related feed (RelatedModulesResource) — the recommendation
+// grid shown below the pin, which is what "all the other images on the page"
+// refers to — paged to the end of the feed (RELATED_MAX_PAGES is only a
+// backstop). Everything de-dupes by hash through the shared run.seen set.
+async function collectPin(run, target) {
   const { origin, pinId, sourceUrl } = target;
-  const pin = pinFromResponse(
+
+  const mainPin = pinFromResponse(
     await fetchResource(
       buildResourceUrl(origin, "PinResource", pinOptions(pinId), sourceUrl),
     ),
   );
-  return {
-    folder: folderName(target),
-    entries: pin ? pinsToEntries([pin]) : [],
-    capped: false,
-  };
+  if (mainPin) {
+    await downloadEntries(run, pinsToEntries([mainPin], run.seen), null);
+  }
+
+  return pageThrough(
+    (bm) =>
+      fetchResource(
+        buildResourceUrl(
+          origin,
+          "RelatedModulesResource",
+          relatedPinsOptions(pinId, bm),
+          sourceUrl,
+        ),
+      ),
+    (pins) => downloadEntries(run, pinsToEntries(pins, run.seen), null),
+    { pinsFrom: relatedPinsFromResponse, maxPages: RELATED_MAX_PAGES },
+  );
 }
 
 // Drive a paginated resource endpoint until its bookmark is exhausted, handing
-// every pin to `sink`. Returns true if it stopped at the page cap (more results
+// each page's pins to `onPage(pins, found)` — `found` is the running pin count.
+// onPage is awaited, so a collector can download a page before the next is
+// fetched (streaming). Returns true if it stopped at the page cap (more results
 // remained), false if it ran the feed dry or bailed on errors. A page error
-// gets one retry, then pagination stops but KEEPS what was already collected —
+// gets one retry, then pagination stops but KEEPS what was already handled —
 // one flaky request shouldn't discard a long crawl. opts.pinsFrom selects the
-// response shape (board feed vs search results); opts.maxPages overrides the cap.
-async function pageThrough(getPage, sink, opts = {}) {
+// response shape (board feed vs search vs related); opts.maxPages overrides the cap.
+async function pageThrough(getPage, onPage, opts = {}) {
   const pinsFrom = opts.pinsFrom || pinsFromResponse;
   const maxPages = opts.maxPages || MAX_PAGES;
   let bookmark = null;
+  let found = 0;
   for (let page = 0; page < maxPages; page++) {
     let json;
     try {
@@ -276,7 +294,9 @@ async function pageThrough(getPage, sink, opts = {}) {
         return false;
       }
     }
-    for (const pin of pinsFrom(json)) sink(pin);
+    const pins = pinsFrom(json);
+    found += pins.length;
+    await onPage(pins, found);
     bookmark = nextBookmark(json);
     if (!bookmark) return false;
   }
@@ -285,9 +305,10 @@ async function pageThrough(getPage, sink, opts = {}) {
 }
 
 // Pick each pin's best image and de-dupe by content hash — repins (and any
-// other pins pointing at the same file) are downloaded once.
-function pinsToEntries(pins) {
-  const seen = new Set();
+// other pins pointing at the same file) are downloaded once. `seen` is the
+// hash set to de-dupe against; pass a shared set to de-dupe across pages of a
+// streamed feed, or omit it for a one-shot batch.
+function pinsToEntries(pins, seen = new Set()) {
   const entries = [];
   for (const pin of pins) {
     const img = pickPinImage(pin);
@@ -320,6 +341,54 @@ async function collectViaScroll(tab) {
     entries.push({ imageUrl: thumbUrl, isOriginal: false });
   }
   return entries;
+}
+
+// --------------------------------------------------------------------------
+// Download orchestration: shared state for one run + the batch downloader the
+// collectors feed (a whole board at once, or one streamed page at a time).
+// --------------------------------------------------------------------------
+
+// Mutable tally + cross-page de-dupe state for a single download run.
+function newRun(folder) {
+  return { folder, seen: new Set(), total: 0, done: 0, skipped: 0, failed: 0, announced: 0 };
+}
+
+// Download a batch of already-de-duped entries into `run`, at most CONCURRENCY
+// at once, updating the badge and pinging every NOTIFY_EVERY images. Called
+// once per board (the full set) or once per streamed page (search/pin).
+// `knownTotal` (the final image count, known up front only for a board) drives a
+// percentage badge; pass null while streaming a feed whose total isn't known
+// yet, and the badge shows a running count instead.
+async function downloadEntries(run, entries, knownTotal) {
+  run.total += entries.length;
+  await runWithConcurrency(entries, CONCURRENCY, async (entry) => {
+    try {
+      const status = await downloadOne(entry, run.folder);
+      if (status === "skipped") run.skipped++;
+      else if (status === "ok") run.done++;
+      else run.failed++;
+    } catch (err) {
+      console.warn("[pinterest-downloader] failed", entry.imageUrl, err);
+      run.failed++;
+    } finally {
+      const handled = run.done + run.skipped;
+      setBadge(knownTotal ? progressPercent(handled, knownTotal) : crawlBadgeText(handled), PIN_RED);
+      // Ping every NOTIFY_EVERY images so a long run shows real progress (the
+      // badge alone is easy to miss). Reuses PROGRESS_ID so each ping replaces
+      // the last instead of stacking; the final summary (same id) replaces the
+      // last ping. Suppressed at a known finish line. No `await` here, so the
+      // milestone check is atomic across the concurrent workers.
+      if (handled - run.announced >= NOTIFY_EVERY && (!knownTotal || handled < knownTotal)) {
+        run.announced = handled;
+        const suffix = knownTotal ? ` of ${knownTotal}` : "";
+        notify(
+          `Downloading… ${handled}${suffix}`,
+          `${run.done} saved, ${run.skipped} already had — continuing.`,
+          PROGRESS_ID,
+        );
+      }
+    }
+  });
 }
 
 // --------------------------------------------------------------------------
@@ -388,7 +457,7 @@ async function upgradeToOriginal(thumbUrl) {
 // --------------------------------------------------------------------------
 // authenticated=true sends the user's Pinterest cookies (needed for private
 // boards); false makes an anonymous request (the full public feed — see the
-// two-pass union in collectViaApi).
+// two-pass union in collectBoard).
 async function fetchResource(url, authenticated = true) {
   const res = await fetch(url, {
     credentials: authenticated ? "include" : "omit",
@@ -456,11 +525,22 @@ function setBadge(text, color) {
   if (color) chrome.action.setBadgeBackgroundColor({ color });
 }
 
-function notify(title, message) {
-  chrome.notifications.create({
+// Crawl-phase badge update: show the running count of images discovered while
+// paginating, so a long pre-download crawl shows life instead of a frozen "…".
+function reportCrawlProgress(found) {
+  setBadge(crawlBadgeText(found), PIN_RED);
+}
+
+function notify(title, message, id) {
+  const options = {
     type: "basic",
     iconUrl: "icons/icon-128.png",
     title,
     message,
-  });
+  };
+  // A fixed id makes the notification replace its predecessor instead of
+  // stacking (used for the live progress ping + final summary); omitting it
+  // lets Chrome assign a fresh id for one-off messages.
+  if (id) chrome.notifications.create(id, options);
+  else chrome.notifications.create(options);
 }

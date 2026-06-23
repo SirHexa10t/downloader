@@ -134,6 +134,19 @@ export function pinOptions(pinId) {
   return { id: pinId, field_set_key: "detailed" };
 }
 
+// A pin's "More like this" related feed (RelatedModulesResource), paginated via
+// bookmark. This is the recommendation grid shown below the pin on the page.
+//
+// CRITICAL: send NO field_set_key. With one (even "detailed"/"react_grid_pin"),
+// Pinterest returns sparse pin stubs that carry no `images`; omitting it makes
+// every related pin come back with its full image set. (Verified against the
+// live endpoint.)
+export function relatedPinsOptions(pinId, bookmark) {
+  const options = { pin_id: pinId, page_size: 25 };
+  if (bookmark) options.bookmarks = [bookmark];
+  return options;
+}
+
 // ---- Response parsing (the JSON shapes Pinterest sends back) ---------------
 
 // The board object (id, name, section_count, pin_count) from BoardResource.
@@ -152,6 +165,15 @@ export function pinsFromResponse(json) {
 export function searchPinsFromResponse(json) {
   const results = json?.resource_response?.data?.results;
   return Array.isArray(results) ? results : [];
+}
+
+// RelatedModulesResource returns a flat `data` array that MIXES real pins with
+// non-pin "shelf" modules (e.g. a {type:"story"} carousel of more ideas). Keep
+// only the image-bearing pins; pickPinImage / pinsToEntries handle the rest.
+export function relatedPinsFromResponse(json) {
+  return pinsFromResponse(json).filter(
+    (item) => item?.images && typeof item.images === "object",
+  );
 }
 
 // PinResource returns the single pin object under data.
@@ -255,9 +277,33 @@ export function sanitizeName(name) {
 //   search -> Pinterest/search_<query>
 //   pin    -> Pinterest/pin_<id>
 // `boardName` (the API's display name) is preferred for boards when known.
+//
+// The search query is lower-cased first: Pinterest search is case-insensitive
+// (the same query typed two ways returns identical results), so "Eva
+// Rosenstand" and "eva rosenstand" must map to ONE folder — otherwise the two
+// casings download to separate folders and resume can't bridge them.
 export function folderName(target, boardName) {
   if (!target) return "Pinterest/download";
-  if (target.kind === "search") return `Pinterest/search_${sanitizeName(target.query)}`;
+  if (target.kind === "search")
+    return `Pinterest/search_${sanitizeName((target.query ?? "").toLowerCase())}`;
   if (target.kind === "pin") return `Pinterest/pin_${target.pinId}`;
   return `Pinterest/${sanitizeName(boardName ?? target.slug)}`;
+}
+
+// ---- Toolbar badge text (Chrome fits ~4 chars on a single line) ------------
+
+// Download-phase progress. A "<done>/<total>" fraction overflows the tiny badge
+// for any sizable page, so show a percentage instead (caps at "100%", 4 chars).
+// Floored, never rounded: "100%" must mean every file is done, so 997/1000
+// reads "99%", not a premature "100%". Exact counts live in the end notification.
+export function progressPercent(done, total) {
+  if (!total) return "0%";
+  return `${Math.floor((done / total) * 100)}%`;
+}
+
+// Crawl-phase progress: the running count of images discovered so far, shown
+// while paginating the API (before any download) so a long crawl isn't a frozen
+// "…". Abbreviated past 9999 ("15000" -> "15k") to stay within the badge.
+export function crawlBadgeText(found) {
+  return found < 10000 ? `${found}` : `${Math.floor(found / 1000)}k`;
 }

@@ -12,6 +12,10 @@ deterministic subfolder of `Downloads/Pinterest/`:
 | Search | `pinterest.com/search/pins/?q=<query>` | `Pinterest/search_<query>/` |
 | Pin | `pinterest.com/pin/<id>/` | `Pinterest/pin_<id>/` |
 
+A **pin** page saves the pin itself *plus* the "More like this" related grid
+shown beneath it. The **search** folder is case-folded (`search_<query>` is
+always lower-case), so the same query typed two ways resumes into one folder.
+
 Each file is named by its image content hash (`<hash>.jpg`), so the name is the
 same every run — re-click to **resume** a partial download and it only fetches
 what's missing, never creating duplicates. That's it.
@@ -51,13 +55,16 @@ what's missing, never creating duplicates. That's it.
 
 1. Open a Pinterest **board**, **search results**, or **pin** page (see the
    table above). The toolbar icon is in color on Pinterest pages.
-2. Click the icon. The badge shows progress (e.g. `42/137`).
+2. Click the icon. The badge shows download progress — a percentage for a board
+   (e.g. `73%`, the total is known up front) or a running count for a search or
+   pin page (e.g. `250`, which streams to the end of an open-ended feed). On big
+   pages a notification also pings every 250 images so you can see it's working.
 3. When done you'll see a notification and a ✓ on the icon.
 4. Find your images in the matching `Downloads/Pinterest/…` subfolder.
 
 For **private** boards, make sure you're logged into Pinterest in the same
 browser — the extension reuses your session, so it can only see boards your
-account can see. Search results are capped at ~1000 images (search is
+account can see. Search results are capped at ~20000 images (search is
 effectively endless); the notification says so if the cap is hit.
 
 ### Re-running / resuming
@@ -161,8 +168,12 @@ extension and full pagination — no scrolling required:
 
 1. **Click handler** (`background.js`) calls `parsePinterestUrl(tab.url)`,
    which returns a target descriptor with `kind: "board" | "search" | "pin"`
-   (or null for unsupported pages). `collectViaApi` dispatches on `kind`;
-   each collector returns `{ folder, entries, capped }`.
+   (or null for unsupported pages). `collectAndDownload` dispatches on `kind`.
+   Search and pin **stream** — each crawled page is downloaded immediately (via
+   `downloadEntries`), so saving starts on the first page and progress survives
+   an interrupted run. A board crawls fully first (it de-dupes a two-pass union),
+   then downloads. A shared `run` carries the folder, cross-page de-dupe set,
+   and tallies; a progress notification pings every `NOTIFY_EVERY` (250) images.
 2. **Board** (`collectBoard`): `BoardResource` → the board's `id` and name,
    then `BoardFeedResource` paged via `bookmark` cursors until the `-end-`
    sentinel. `filter_section_pins: false` makes the feed span the whole board
@@ -175,8 +186,16 @@ extension and full pagination — no scrolling required:
    - **Search** (`collectSearch`): `BaseSearchResource` (scope `pins`), paged
      like the feed but bounded by `SEARCH_MAX_PAGES` (search is endless); pins
      are nested under `data.results`. The summary notes if the cap was hit.
-   - **Pin** (`collectPin`): `PinResource` → that one pin. (No DOM fallback —
-     scrolling a pin page would grab unrelated "more ideas".)
+   - **Pin** (`collectPin`): `PinResource` for the pin itself, **plus** its
+     "More like this" related feed (`RelatedModulesResource`), paged to the end
+     of the feed — which normally runs out on its own (~300 pins), so one click
+     grabs the whole thing. `RELATED_MAX_PAGES` (~20000) is only a backstop for
+     feeds that keep paginating; it's deliberately not small, since a small cap
+     would strand the feed's tail (re-clicking restarts at page 0 and can't
+     resume past a cap). Main + related are unioned and de-duped by hash. The
+     related feed must be requested **without** a `field_set_key`, or Pinterest
+     returns imageless pin stubs. (No DOM scroll fallback — these API calls
+     cover the page.)
 4. For each pin, **`pickPinImage`** takes `images.orig` if present, else the
    largest preview size (the `NNNx` keys; square crops like `136x136` are
    ignored). Previews are upgraded to `/originals/` by probing candidate

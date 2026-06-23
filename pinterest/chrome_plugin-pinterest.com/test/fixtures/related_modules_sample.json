@@ -1,0 +1,54 @@
+{
+  "resource_response": {
+    "status": "success",
+    "code": 0,
+    "bookmark": "UmVsYXRlZE5leHRQYWdl",
+    "data": [
+      {
+        "type": "story",
+        "story_type": "more_ideas_shelf",
+        "id": "shelf-1",
+        "objects": []
+      },
+      {
+        "type": "pin",
+        "id": "9000000000000001",
+        "grid_title": "Related pin with a true original",
+        "images": {
+          "236x": {
+            "url": "https://i.pinimg.com/236x/a1/b2/c3/a1b2c3d4e5f60718293a4b5c6d7e8f90.jpg",
+            "width": 236,
+            "height": 314
+          },
+          "orig": {
+            "url": "https://i.pinimg.com/originals/a1/b2/c3/a1b2c3d4e5f60718293a4b5c6d7e8f90.jpg",
+            "width": 1200,
+            "height": 1600
+          }
+        }
+      },
+      {
+        "type": "pin",
+        "id": "9000000000000002",
+        "grid_title": "Related pin, previews only",
+        "images": {
+          "236x": {
+            "url": "https://i.pinimg.com/236x/de/ad/be/deadbeefcafef00d1122334455667788.jpg",
+            "width": 236,
+            "height": 314
+          },
+          "736x": {
+            "url": "https://i.pinimg.com/736x/de/ad/be/deadbeefcafef00d1122334455667788.jpg",
+            "width": 736,
+            "height": 981
+          }
+        }
+      },
+      {
+        "type": "story",
+        "story_type": "shop_the_look",
+        "id": "shelf-2"
+      }
+    ]
+  }
+}
