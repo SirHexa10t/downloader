@@ -1,7 +1,0 @@
-Friendship Bonus: 15
-Mood Bonus: 35
-Speed Bonus: 1
-Starting Bond Up: 20
-Hint Lv. Bonus: 1
-Hint Rate Up: 20
-Specialty Rate Up: 50

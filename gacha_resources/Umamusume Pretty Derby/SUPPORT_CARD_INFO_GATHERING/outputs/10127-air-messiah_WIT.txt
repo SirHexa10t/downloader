@@ -1,9 +1,0 @@
-Friendship Bonus: 15
-Mood Bonus: 25
-Wisdom Bonus: 1
-Initial Wisdom Up: 25
-Starting Bond Up: 20
-Hint Lv. Bonus: 1
-Hint Rate Up: 20
-Specialty Rate Up: 35
-Wisdom Training Recovery Up: 3

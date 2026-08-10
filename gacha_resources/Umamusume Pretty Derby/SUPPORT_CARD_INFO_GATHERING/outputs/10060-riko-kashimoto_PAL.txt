@@ -1,8 +1,0 @@
-Increased Training: 5
-Starting Bond Up: 25
-Race Bonus: 5
-Fan Count Bonus: 15
-Event Recovery Amount Up: 30
-Event Effect Up: 25
-Failure Rate Down: 15
-Energy Discount: 10

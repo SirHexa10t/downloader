@@ -9,4 +9,9 @@ tests/test_outputs/
 
 *.webm
 
-*.png
+outputs/
+
+*grid.png
+
+icon-*.png
+

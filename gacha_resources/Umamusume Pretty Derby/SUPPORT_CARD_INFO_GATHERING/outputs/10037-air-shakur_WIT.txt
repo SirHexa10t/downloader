@@ -1,8 +1,0 @@
-Friendship Bonus: 15
-Mood Bonus: 25
-Increased Training: 5
-Starting Bond Up: 20
-Hint Lv. Bonus: 2
-Hint Rate Up: 40
-Skill Point Bonus: 1
-Wisdom Training Recovery Up: 3

@@ -1,7 +1,0 @@
-Friendship Bonus: 15
-Increased Training: 10
-Initial Wisdom Up: 25
-Race Bonus: 5
-Fan Count Bonus: 15
-Specialty Rate Up: 35
-Skill Point Bonus: 1

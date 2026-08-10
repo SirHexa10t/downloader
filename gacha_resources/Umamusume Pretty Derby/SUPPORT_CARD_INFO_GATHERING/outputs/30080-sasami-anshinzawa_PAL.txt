@@ -1,7 +1,0 @@
-Unique Effect
-    Sasami Anshinzawa random events are more likely to occur
-Mood Bonus: 60
-Starting Bond Up: 25
-Event Recovery Amount Up: 60
-Event Effect Up: 50
-Skill Point Bonus: 1
